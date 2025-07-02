@@ -6,6 +6,7 @@ package com.login;
 
 import com.mycompany.nexuseguros.dashboardAgente;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -55,6 +56,7 @@ public class login extends javax.swing.JFrame {
 
         userTxt.setBackground(new java.awt.Color(34, 34, 34));
         userTxt.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        userTxt.setForeground(new java.awt.Color(204, 204, 204));
         userTxt.setText("Ingrese su usuario");
         userTxt.setBorder(null);
         userTxt.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -75,6 +77,7 @@ public class login extends javax.swing.JFrame {
 
         passTxt.setBackground(new java.awt.Color(34, 34, 34));
         passTxt.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        passTxt.setForeground(new java.awt.Color(204, 204, 204));
         passTxt.setText("********");
         passTxt.setBorder(null);
         passTxt.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -168,23 +171,35 @@ public class login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void userTxtMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userTxtMousePressed
+        if (userTxt.getText().equals("Ingrese su usuario")){
         userTxt.setText("");
-        userTxt.setForeground(Color.black);
+        userTxt.setForeground(Color.WHITE);
+        }
+        if(String.valueOf(passTxt.getPassword()).isEmpty()){
         passTxt.setText("********");
         passTxt.setForeground(Color.gray);
+        }
     }//GEN-LAST:event_userTxtMousePressed
 
     private void passTxtMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passTxtMousePressed
+        if(String.valueOf(passTxt.getPassword()).equals("********")){
+        passTxt.setText("");
+        passTxt.setForeground(Color.WHITE);
+        }
+        if (userTxt.getText().isEmpty()){
         userTxt.setText("Ingrese su usuario");
         userTxt.setForeground(Color.gray);
-        passTxt.setText("");
-        passTxt.setForeground(Color.black);
+        }
     }//GEN-LAST:event_passTxtMousePressed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+if("Ingrese su usuario".equals(userTxt.getText())||"********".equals(passTxt.getText())){
+    JOptionPane.showMessageDialog(null, "Ingrese los datos del usuario");
+}else{
+JOptionPane.showMessageDialog(null, "Bienvenido");
         dashboardAgente dA = new dashboardAgente();
         dA.setVisible(true);
-        this.setVisible(false);
+        this.setVisible(false);}
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
