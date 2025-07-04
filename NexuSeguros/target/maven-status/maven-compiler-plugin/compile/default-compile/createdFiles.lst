@@ -3,6 +3,7 @@ com\mycompany\views\registrodeCliente$4.class
 com\mycompany\nexuseguros\dashboardAgente$6.class
 com\mycompany\nexuseguros\dashboardAgente$2.class
 com\mycompany\views\perfilAgente.class
+clases\SesionAgente.class
 com\mycompany\nexuseguros\dashboardAgente$13.class
 com\mycompany\views\leerCliente.class
 com\login\bienvenidaAC$1.class
@@ -37,8 +38,10 @@ com\mycompany\nexuseguros\dashboardAgente$7.class
 com\mycompany\nexuseguros\dashboardCliente$3.class
 com\mycompany\views\registrodeCliente$10.class
 com\mycompany\nexuseguros\dashboardCliente$4.class
+clases\AgenteDatos.class
 com\mycompany\views\registrodeCliente$9.class
 com\mycompany\views\registrodeCliente$6.class
+clases\Cliente.class
 com\login\bienvenidaAC$4.class
 com\login\login$4.class
 com\mycompany\nexuseguros\dashboardAgente$11.class
@@ -54,5 +57,6 @@ com\login\login$3.class
 com\mycompany\nexuseguros\dashboardAgente$10.class
 com\mycompany\nexuseguros\dashboardCliente$5.class
 com\mycompany\views\inicioAgente.class
+clases\ClienteDatos.class
 com\mycompany\views\perfilC.class
 com\mycompany\views\registrodeCliente$5.class

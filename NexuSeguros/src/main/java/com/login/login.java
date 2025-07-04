@@ -1,13 +1,24 @@
 
 package com.login;
 
+import clases.AgenteDatos;
+import clases.Cliente;
+import clases.ClienteDatos;
+import clases.SesionAgente;
+import clases.agente;
 import com.mycompany.nexuseguros.dashboardAgente;
+import com.mycompany.nexuseguros.dashboardCliente;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 
 public class login extends javax.swing.JFrame {
 
-  
+  private String tipoUsuario;
+
+public login(String tipoUsuario) {
+    this.tipoUsuario = tipoUsuario;
+    initComponents();
+}
     public login() {
         initComponents();
     }
@@ -215,9 +226,38 @@ public class login extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
- dashboardAgente dA = new dashboardAgente();
-        dA.setVisible(true);
-        this.setVisible(false);
+  String correo = userTxt.getText();
+    String contrasena = String.valueOf(passTxt.getPassword());
+    agente agenteEncontrado = AgenteDatos.buscarAgente(correo, contrasena);
+    
+
+    if (correo.isEmpty() || contrasena.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Por favor, ingrese correo y contraseña");
+        return;
+    }
+
+    if (tipoUsuario.equals("agente")) {
+        agente agente = AgenteDatos.buscarAgente(correo, contrasena);
+        if (agente != null) {
+            SesionAgente.agenteLogueado = agente;
+            JOptionPane.showMessageDialog(this, "Bienvenido agente");
+            dashboardAgente dA = new dashboardAgente();
+            dA.setVisible(true);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Credenciales de agente incorrectas");
+        }
+    } else if (tipoUsuario.equals("cliente")) {
+        Cliente cliente = ClienteDatos.buscarCliente(correo, contrasena);
+        if (cliente != null) {
+            JOptionPane.showMessageDialog(this, "Bienvenido cliente");
+            dashboardCliente dC = new dashboardCliente();
+            dC.setVisible(true);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Credenciales de cliente incorrectas");
+        }
+    }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
