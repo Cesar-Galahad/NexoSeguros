@@ -39,6 +39,7 @@ public class bienvenidaAC extends javax.swing.JFrame {
         botonLoginCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/perfil.png"))); // NOI18N
         botonLoginCliente.setText("Soy cliente");
         botonLoginCliente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        botonLoginCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonLoginCliente.setIconTextGap(10);
         botonLoginCliente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -61,6 +62,7 @@ public class bienvenidaAC extends javax.swing.JFrame {
         botonLoginAgente.setText("Soy Agente");
         botonLoginAgente.setToolTipText("");
         botonLoginAgente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        botonLoginAgente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonLoginAgente.setIconTextGap(10);
         botonLoginAgente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {

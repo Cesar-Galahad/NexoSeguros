@@ -323,6 +323,8 @@ public class dashboardAgente extends javax.swing.JFrame {
                 .addContainerGap(57, Short.MAX_VALUE))
         );
 
+        contentAgente.setBackground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout contentAgenteLayout = new javax.swing.GroupLayout(contentAgente);
         contentAgente.setLayout(contentAgenteLayout);
         contentAgenteLayout.setHorizontalGroup(
