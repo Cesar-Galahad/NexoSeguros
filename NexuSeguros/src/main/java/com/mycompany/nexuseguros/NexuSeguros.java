@@ -1,6 +1,5 @@
 package com.mycompany.nexuseguros;
 import com.login.bienvenidaAC;
-import com.login.login;
 
 
 /**

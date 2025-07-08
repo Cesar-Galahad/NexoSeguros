@@ -1,42 +1,52 @@
-
 package clases;
 
 
-public class Cliente {
+public class Cliente extends User{
     private int idCliente;
-    private String nombre;
-    private String apellidoPaterno;
-    private String apellidoMaterno;
-    private String telefono;
     private String direccion;
     private String curp;
     private String rfc;
-    private String genero;
-    private String correo;
-    private String contrasena;
 
-    public Cliente(int idCliente, String nombre, String apellidoPaterno, String apellidoMaterno,
-                   String telefono, String direccion, String curp, String rfc, String genero,
-                   String correo, String contrasena) {
+    public Cliente(int idCliente, String direccion, String curp, String rfc, String nombre, String apellidoPaterno, String apellidoMaterno, String telefono, String genero, String correo, String contrasena, String usuario) {
+        super(nombre, apellidoPaterno, apellidoMaterno, telefono, genero, correo, contrasena, usuario);
         this.idCliente = idCliente;
-        this.nombre = nombre;
-        this.apellidoPaterno = apellidoPaterno;
-        this.apellidoMaterno = apellidoMaterno;
-        this.telefono = telefono;
         this.direccion = direccion;
         this.curp = curp;
         this.rfc = rfc;
-        this.genero = genero;
-        this.correo = correo;
-        this.contrasena = contrasena;
     }
 
-    public String getCorreo() {
-        return correo;
+    public int getIdCliente() {
+        return idCliente;
     }
 
-    public String getContrasena() {
-        return contrasena;
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
     }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getCurp() {
+        return curp;
+    }
+
+    public void setCurp(String curp) {
+        this.curp = curp;
+    }
+
+    public String getRfc() {
+        return rfc;
+    }
+
+    public void setRfc(String rfc) {
+        this.rfc = rfc;
+    }
+
+    
     
 }

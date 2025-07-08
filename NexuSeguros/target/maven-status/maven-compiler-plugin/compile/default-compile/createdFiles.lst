@@ -1,5 +1,4 @@
 com\mycompany\views\inicioAgente$2.class
-com\mycompany\views\registrodeCliente$4.class
 com\mycompany\views\perfilAgente.class
 com\mycompany\views\leerCliente.class
 com\mycompany\nexuseguros\dashboardCliente$9.class
@@ -7,9 +6,9 @@ com\mycompany\views\registrodeCliente$1.class
 com\mycompany\nexuseguros\dashboardCliente$1.class
 com\mycompany\views\inicioAgente$1.class
 com\mycompany\nexuseguros\dashboardCliente$6.class
-com\mycompany\views\registrodeCliente$3.class
+com\login\login$5.class
 com\mycompany\views\inicioAgente$4.class
-com\mycompany\views\registrodeCliente$7.class
+clases\LoginDAO.class
 com\mycompany\views\registrodeCliente.class
 com\mycompany\views\contratacionesC.class
 com\mycompany\nexuseguros\dashboardCliente.class
@@ -18,17 +17,13 @@ com\mycompany\views\inicioC.class
 com\mycompany\nexuseguros\dashboardCliente$7.class
 com\mycompany\views\borrarCliente.class
 com\mycompany\nexuseguros\dashboardCliente$3.class
-com\mycompany\views\registrodeCliente$10.class
 com\mycompany\nexuseguros\dashboardCliente$4.class
-com\mycompany\views\registrodeCliente$9.class
-com\mycompany\views\registrodeCliente$6.class
 clases\ConexionBD.class
 com\mycompany\nexuseguros\dashboardCliente$8.class
 com\mycompany\views\inicioAgente$3.class
-com\mycompany\views\registrodeCliente$8.class
 com\mycompany\views\registrodeCliente$2.class
 com\mycompany\nexuseguros\dashboardCliente$2.class
+clases\User.class
 com\mycompany\nexuseguros\dashboardCliente$5.class
 com\mycompany\views\inicioAgente.class
 com\mycompany\views\perfilC.class
-com\mycompany\views\registrodeCliente$5.class
