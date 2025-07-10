@@ -17,34 +17,6 @@ public login(String tipoUsuario) {
         initComponents();
     }
 
-//    public void validar() {
-//    String userInput = userTxt.getText();
-//    String pwdInput = passTxt.getText();
-//
-//    if (userInput.isEmpty() || pwdInput.isEmpty()) {
-//        JOptionPane.showMessageDialog(null, "Llene todos los campos");
-//        return;
-//    }
-//
-//    boolean credencialesValidas = false;
-//
-////    for (Usuario u : Registro.Datos) {
-////        if (u.getUsuario().equals(userInput) && u.getPassword().equals(pwdInput)) {
-////            credencialesValidas = true;
-////            Registro.usr = u;
-////            break;
-////        }
-////    }
-//
-//    if (credencialesValidas) {
-//        JOptionPane.showMessageDialog(null, "Inicio de sesión exitoso");
-//        
-//        
-//        
-//    } else {
-//        JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos");
-//}
-//}
     
     public static void validarAgente(){
     }

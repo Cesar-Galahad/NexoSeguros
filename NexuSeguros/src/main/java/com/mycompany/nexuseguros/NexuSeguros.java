@@ -9,7 +9,6 @@ import com.login.bienvenidaAC;
 public class NexuSeguros {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
         javax.swing.SwingUtilities.invokeLater(() -> {
             // Reemplaza NombreDeTuJFrame por el nombre real del JFrame Form
             new bienvenidaAC().setVisible(true);

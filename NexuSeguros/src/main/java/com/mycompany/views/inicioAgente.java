@@ -36,6 +36,10 @@ public class inicioAgente extends javax.swing.JPanel {
         SeguroDeVida = new javax.swing.JTextArea();
         jScrollPane4 = new javax.swing.JScrollPane();
         SeguroDeIncendio = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(51, 51, 51));
 
@@ -117,6 +121,12 @@ public class inicioAgente extends javax.swing.JPanel {
         jScrollPane4.setViewportView(SeguroDeIncendio);
 
         jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 20, -1, 460));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, 100, 120));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/seguro-de-auto.gif"))); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, 110, 110));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, 100, 120));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, 100, 120));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -169,6 +179,10 @@ SeguroDeIncendio.setVisible(true);
     private javax.swing.JTextArea SeguroDeIncendio;
     private javax.swing.JTextArea SeguroDeRobo;
     private javax.swing.JTextArea SeguroDeVida;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
