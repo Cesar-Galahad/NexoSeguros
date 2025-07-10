@@ -8,7 +8,7 @@ import java.sql.*;
 import java.util.*;
 
 public class LogicaDAO {
-    public boolean crearCliente(Cliente c) {
+   /*public boolean crearCliente(Cliente c) {
         String sql = "INSERT INTO clientes(nombre, apellido, correo, telefono) VALUES(?, ?, ?, ?)";
         try (Connection conn = ConexionBD.conectar(); PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, c.dCliente());
@@ -75,5 +75,5 @@ public class LogicaDAO {
             System.out.println("Error al eliminar cliente: " + e);
             return false;
         }
-    }
+    }*/
 }

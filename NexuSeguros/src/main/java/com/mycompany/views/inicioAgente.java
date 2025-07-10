@@ -10,6 +10,7 @@ public class inicioAgente extends javax.swing.JPanel {
     SeguroDeRobo.setVisible(false);
     SeguroDeVida.setVisible(false);
     SeguroDeIncendio.setVisible(false);
+ 
     }
     private void ocultarTodosLosTextArea() {
     SeguroDeAuto.setVisible(false);
@@ -17,7 +18,7 @@ public class inicioAgente extends javax.swing.JPanel {
     SeguroDeVida.setVisible(false);
     SeguroDeIncendio.setVisible(false);
 }
-
+    
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -38,8 +39,8 @@ public class inicioAgente extends javax.swing.JPanel {
         SeguroDeIncendio = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(51, 51, 51));
 
@@ -52,7 +53,7 @@ public class inicioAgente extends javax.swing.JPanel {
         SeguroDeAuto.setBorder(null);
         jScrollPane2.setViewportView(SeguroDeAuto);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 20, -1, 460));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(343, 20, 340, 460));
 
         SeguroDeRobo.setColumns(20);
         SeguroDeRobo.setRows(5);
@@ -60,7 +61,7 @@ public class inicioAgente extends javax.swing.JPanel {
         SeguroDeRobo.setBorder(new javax.swing.border.MatteBorder(null));
         jScrollPane1.setViewportView(SeguroDeRobo);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 20, -1, 460));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(345, 20, 340, 460));
 
         SEGURO_DE_AUTO.setBackground(new java.awt.Color(51, 51, 51));
         SEGURO_DE_AUTO.setForeground(new java.awt.Color(255, 255, 255));
@@ -71,7 +72,7 @@ public class inicioAgente extends javax.swing.JPanel {
                 SEGURO_DE_AUTOActionPerformed(evt);
             }
         });
-        jPanel1.add(SEGURO_DE_AUTO, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 60, 140, 30));
+        jPanel1.add(SEGURO_DE_AUTO, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, 140, 30));
 
         SEGURO_DE_ROBO.setBackground(new java.awt.Color(51, 51, 51));
         SEGURO_DE_ROBO.setForeground(new java.awt.Color(255, 255, 255));
@@ -82,7 +83,7 @@ public class inicioAgente extends javax.swing.JPanel {
                 SEGURO_DE_ROBOActionPerformed(evt);
             }
         });
-        jPanel1.add(SEGURO_DE_ROBO, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 180, 140, 30));
+        jPanel1.add(SEGURO_DE_ROBO, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 290, 140, 30));
 
         SEGURO_DE_INCENDIO.setBackground(new java.awt.Color(51, 51, 51));
         SEGURO_DE_INCENDIO.setForeground(new java.awt.Color(255, 255, 255));
@@ -93,7 +94,7 @@ public class inicioAgente extends javax.swing.JPanel {
                 SEGURO_DE_INCENDIOActionPerformed(evt);
             }
         });
-        jPanel1.add(SEGURO_DE_INCENDIO, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 410, 140, 30));
+        jPanel1.add(SEGURO_DE_INCENDIO, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 400, 140, 30));
 
         SEGURO_DE_VIDA.setBackground(new java.awt.Color(51, 51, 51));
         SEGURO_DE_VIDA.setForeground(new java.awt.Color(255, 255, 255));
@@ -104,7 +105,7 @@ public class inicioAgente extends javax.swing.JPanel {
                 SEGURO_DE_VIDAActionPerformed(evt);
             }
         });
-        jPanel1.add(SEGURO_DE_VIDA, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 300, 140, 30));
+        jPanel1.add(SEGURO_DE_VIDA, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 140, 30));
 
         SeguroDeVida.setColumns(20);
         SeguroDeVida.setRows(5);
@@ -112,7 +113,7 @@ public class inicioAgente extends javax.swing.JPanel {
         SeguroDeVida.setBorder(new javax.swing.border.MatteBorder(null));
         jScrollPane3.setViewportView(SeguroDeVida);
 
-        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 20, -1, 460));
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(345, 20, 340, 460));
 
         SeguroDeIncendio.setColumns(20);
         SeguroDeIncendio.setRows(5);
@@ -120,13 +121,19 @@ public class inicioAgente extends javax.swing.JPanel {
         SeguroDeIncendio.setBorder(new javax.swing.border.MatteBorder(null));
         jScrollPane4.setViewportView(SeguroDeIncendio);
 
-        jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 20, -1, 460));
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, 100, 120));
+        jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(345, 20, 340, 460));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/seguro-de-auto.gif"))); // NOI18N
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, 110, 110));
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, 100, 120));
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, 100, 120));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/seguro-incendio.gif"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 110, 110));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/seguro-auto.gif"))); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 110, 110));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/seguro-robo.gif"))); // NOI18N
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 110, 110));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/seguro-vida.gif"))); // NOI18N
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 110, 110));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -181,12 +188,16 @@ SeguroDeIncendio.setVisible(true);
     private javax.swing.JTextArea SeguroDeVida;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     // End of variables declaration//GEN-END:variables
+
+    private void setLocationRelativeTo(inicioAgente aThis) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
