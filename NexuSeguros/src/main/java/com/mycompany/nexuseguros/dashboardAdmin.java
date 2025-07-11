@@ -199,7 +199,7 @@ public class dashboardAdmin extends javax.swing.JFrame {
         botonRegistro.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         botonRegistro.setForeground(new java.awt.Color(255, 255, 255));
         botonRegistro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/registro.png"))); // NOI18N
-        botonRegistro.setText("Registro de clientes");
+        botonRegistro.setText("Registro de agentes");
         botonRegistro.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 10, 1, 1, new java.awt.Color(0, 0, 0)));
         botonRegistro.setBorderPainted(false);
         botonRegistro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));

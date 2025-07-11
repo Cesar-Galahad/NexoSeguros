@@ -1,5 +1,6 @@
 com\mycompany\nexuseguros\dashboardAdmin$7.class
 com\mycompany\nexuseguros\dashboardAdmin$10.class
+com\mycompany\views\registrodeCliente$4.class
 com\mycompany\nexuseguros\dashboardCliente$9.class
 com\mycompany\views\registrodeCliente$1.class
 com\mycompany\nexuseguros\dashboardAdmin$13.class
@@ -19,7 +20,6 @@ clases\ConexionBD.class
 com\mycompany\nexuseguros\dashboardAdmin$5.class
 com\mycompany\nexuseguros\dashboardAdmin$6.class
 com\mycompany\nexuseguros\dashboardAdmin$14.class
-com\mycompany\views\labelName.class
 com\mycompany\views\inicioAgente$3.class
 com\mycompany\views\registrodeCliente$2.class
 com\mycompany\nexuseguros\dashboardAdmin.class
@@ -42,7 +42,6 @@ com\mycompany\views\borrarCliente.class
 com\mycompany\nexuseguros\dashboardCliente$3.class
 com\mycompany\nexuseguros\dashboardCliente$8.class
 com\mycompany\nexuseguros\dashboardAdmin$11.class
-clases\LogicaDAO.class
 com\mycompany\nexuseguros\dashboardCliente$2.class
 com\mycompany\nexuseguros\dashboardAdmin$9.class
 com\mycompany\views\perfilC.class

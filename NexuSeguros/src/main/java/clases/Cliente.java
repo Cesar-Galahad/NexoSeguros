@@ -2,12 +2,12 @@ package clases;
 
 
 public class Cliente extends User{
-    private int idCliente;
+    private String idCliente;
     private String direccion;
     private String curp;
     private String rfc;
 
-    public Cliente(int idCliente, String direccion, String curp, String rfc, String nombre, String apellidoPaterno, String apellidoMaterno, String telefono, String genero, String correo, String contrasena, String usuario) {
+    public Cliente(String idCliente, String direccion, String curp, String rfc, String nombre, String apellidoPaterno, String apellidoMaterno, String telefono, String genero, String correo, String contrasena, String usuario) {
         super(nombre, apellidoPaterno, apellidoMaterno, telefono, genero, correo, contrasena, usuario);
         this.idCliente = idCliente;
         this.direccion = direccion;
@@ -15,11 +15,11 @@ public class Cliente extends User{
         this.rfc = rfc;
     }
 
-    public int getIdCliente() {
+    public String getIdCliente() {
         return idCliente;
     }
 
-    public void setIdCliente(int idCliente) {
+    public void setIdCliente(String idCliente) {
         this.idCliente = idCliente;
     }
 
@@ -47,6 +47,5 @@ public class Cliente extends User{
         this.rfc = rfc;
     }
 
-    
     
 }
