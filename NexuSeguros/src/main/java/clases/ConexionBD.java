@@ -2,6 +2,7 @@ package clases;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -23,16 +24,29 @@ public class ConexionBD {
             return null;
         }
     }
-    public static void guardar(Cliente x){
-    String q = "INSERT INTO clientes VALUES('" + x.getIdCliente() + "','" + x.getNombre() + "','" + x.getApellidoPaterno() + "','" + x.getApellidoMaterno() + "','" + x.getDireccion() + "','" + x.getTelefono() + "','" + x.getGenero() + "','" + x.getCorreo() + "','" + x.getCurp() + "','" + x.getRfc() + "','" + x.getUsuario() + "','" + x.getContrasena() + "')";
+   public static void guardar(Cliente c) {
+    String sql = "INSERT INTO clientes(nombre, apellidoPaterno, apellidoMaterno, curp, folio, tipoSeguro, cantidad, vigencia, resepcion) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-    try (Connection con = DriverManager.getConnection(URL, USER, PASSWORD);
-         Statement stmt = con.createStatement()) {
-        stmt.executeUpdate(q);
-        System.out.println("Subida completa");
+    try (Connection con = conectar();
+         PreparedStatement ps = con.prepareStatement(sql)) {
+
+        ps.setString(1, c.getNombre());
+        ps.setString(2, c.getApellidoPaterno());
+        ps.setString(3, c.getApellidoMaterno());
+        ps.setString(4, c.getCurp());
+        ps.setString(5, c.getFolio());
+        ps.setString(6, c.getTipoSeguro());
+        ps.setString(7, c.getCantidad());
+        ps.setString(8, c.getVigencia());
+        ps.setString(9, c.getRecepcion()); // o getRecepcion() si corriges el nombre
+
+        ps.executeUpdate();
+        System.out.println("Datos guardados correctamente");
+
     } catch (SQLException e) {
         System.out.println("Error al guardar: " + e.getMessage());
     }
 }
+
 
 }

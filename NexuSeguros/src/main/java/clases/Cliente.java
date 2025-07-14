@@ -1,51 +1,48 @@
 package clases;
 
+public class Cliente extends User {
+    private String folio;
+    private String tipoSeguro;
+    private String cantidad;
+    private String vigencia;
+    private String resepcion;
 
-public class Cliente extends User{
-    private String idCliente;
-    private String direccion;
-    private String curp;
-    private String rfc;
-
-    public Cliente(String idCliente, String direccion, String curp, String rfc, String nombre, String apellidoPaterno, String apellidoMaterno, String telefono, String genero, String correo, String contrasena, String usuario) {
+    public Cliente(String nombre, String apellidoPaterno, String apellidoMaterno, String telefono, String genero, String correo, String contrasena, String usuario,
+                   String curp, String folio, String tipoSeguro, String cantidad, String vigencia, String resepcion) {
         super(nombre, apellidoPaterno, apellidoMaterno, telefono, genero, correo, contrasena, usuario);
-        this.idCliente = idCliente;
-        this.direccion = direccion;
         this.curp = curp;
-        this.rfc = rfc;
+        this.folio = folio;
+        this.tipoSeguro = tipoSeguro;
+        this.cantidad = cantidad;
+        this.vigencia = vigencia;
+        this.resepcion = resepcion;
     }
 
-    public String getIdCliente() {
-        return idCliente;
-    }
+    private String curp;
 
-    public void setIdCliente(String idCliente) {
-        this.idCliente = idCliente;
-    }
-
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
-
+    // Getters
     public String getCurp() {
         return curp;
     }
 
-    public void setCurp(String curp) {
-        this.curp = curp;
+    public String getFolio() {
+        return folio;
     }
 
-    public String getRfc() {
-        return rfc;
+    public String getTipoSeguro() {
+        return tipoSeguro;
     }
 
-    public void setRfc(String rfc) {
-        this.rfc = rfc;
+    public String getCantidad() {
+        return cantidad;
     }
 
-    
+    public String getVigencia() {
+        return vigencia;
+    }
+
+    public String getRecepcion() {
+    return resepcion;
+}
+
 }
