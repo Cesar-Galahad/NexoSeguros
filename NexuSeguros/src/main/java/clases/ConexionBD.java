@@ -24,14 +24,15 @@ public class ConexionBD {
         }
     }
     public static void guardar(Cliente x){
-        String q = "insert into clientes values('"+x.getIdCliente()+ "','"+x.getNombre()+"','"+ x.getApellidoPaterno()+"','" + x.getApellidoMaterno() + "','" + x.getDireccion()+"','" + x.getTelefono() + "','" + x.getGenero()+ "','" + x.getCorreo()+"','"+x.getCurp()+"','"+x.getRfc()+"','" + x.getUsuario()+"','" +x.getContrasena()+"')";
-        try{
-            sentencia.executeUpdate(q);
-            System.out.println("Subida completa");
-        }catch(SQLException e){
-            System.out.println("Error");
-        }
-        
+    String q = "INSERT INTO clientes VALUES('" + x.getIdCliente() + "','" + x.getNombre() + "','" + x.getApellidoPaterno() + "','" + x.getApellidoMaterno() + "','" + x.getDireccion() + "','" + x.getTelefono() + "','" + x.getGenero() + "','" + x.getCorreo() + "','" + x.getCurp() + "','" + x.getRfc() + "','" + x.getUsuario() + "','" + x.getContrasena() + "')";
+
+    try (Connection con = DriverManager.getConnection(URL, USER, PASSWORD);
+         Statement stmt = con.createStatement()) {
+        stmt.executeUpdate(q);
+        System.out.println("Subida completa");
+    } catch (SQLException e) {
+        System.out.println("Error al guardar: " + e.getMessage());
     }
 }
 
+}
