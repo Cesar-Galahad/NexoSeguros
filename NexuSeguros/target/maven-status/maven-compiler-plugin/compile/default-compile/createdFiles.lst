@@ -48,6 +48,7 @@ com\mycompany\views\perfilAgente.class
 com\mycompany\nexuseguros\dashboardAdmin$3.class
 com\mycompany\views\leerCliente.class
 com\login\bienvenidaAC$1.class
+com\mycompany\views\leerCliente$1.class
 com\mycompany\nexuseguros\dashboardAdmin$8.class
 com\mycompany\views\registrodeCliente$3.class
 com\mycompany\nexuseguros\dashboardAdmin$12.class

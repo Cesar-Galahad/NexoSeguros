@@ -1,4 +1,3 @@
-
 package com.mycompany.views;
 
 import clases.ConexionBD;
@@ -7,16 +6,79 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
+
 import javax.swing.table.DefaultTableModel;
 
-
 public class leerCliente extends javax.swing.JPanel {
-
-  
+    
     public leerCliente() {
         initComponents();
         cargarClientesEnTabla();
     }
+    
+    private void buscarCliente() {
+    String filtro = (String) jComboBox1.getSelectedItem();
+    String valor = jTextField1.getText().trim();
+
+    if (filtro.equals("Selecciona") || valor.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Selecciona un campo y escribe un valor para buscar.");
+        return;
+    }
+
+    String columnaBD = switch (filtro) {
+        case "Nombre" -> "nombre";
+        case "Apellido P" -> "apellidoPaterno";
+        case "Apellido M" -> "apellidoMaterno";
+        case "Crup" -> "curp";
+        case "Folio " -> "folio";
+        case "Tipo S" -> "tipoSeguro";
+        case "Cantidad" -> "cantidad";
+        case "Vigencia" -> "vigencia";
+        case "Recpcion" -> "recepcion";
+        default -> null;
+    };
+
+    if (columnaBD == null) return;
+
+    DefaultTableModel modelo = new DefaultTableModel();
+    modelo.addColumn("Nombre");
+    modelo.addColumn("Apellido P");
+    modelo.addColumn("Apellido M");
+    modelo.addColumn("CURP");
+    modelo.addColumn("Tipo de Seguro");
+    modelo.addColumn("Cantidad");
+    modelo.addColumn("Vigencia");
+    modelo.addColumn("Recepción");
+
+    String sql = "SELECT nombre, apellidoPaterno, apellidoMaterno, curp, tipoSeguro, cantidad, vigencia, recepcion FROM clientes WHERE " + columnaBD + " LIKE '%" + valor + "%'";
+
+    try (Connection con = ConexionBD.conectar();
+         Statement stmt = con.createStatement();
+         ResultSet rs = stmt.executeQuery(sql)) {
+
+        while (rs.next()) {
+            modelo.addRow(new Object[]{
+                rs.getString("nombre"),
+                rs.getString("apellidoPaterno"),
+                rs.getString("apellidoMaterno"),
+                rs.getString("curp"),
+                rs.getString("tipoSeguro"),
+                rs.getString("cantidad"),
+                rs.getString("vigencia"),
+                rs.getString("recepcion")
+            });
+        }
+
+        jTable1.setModel(modelo);
+
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(this, "Error al buscar cliente: " + e.getMessage());
+    }
+}
+
+    
+    
+    
 private void cargarClientesEnTabla() {
     DefaultTableModel modelo = new DefaultTableModel();
     modelo.addColumn("Nombre");
@@ -29,7 +91,8 @@ private void cargarClientesEnTabla() {
     modelo.addColumn("Recepción");
 
     try (Connection con = ConexionBD.conectar()) {
-        String sql = "SELECT nombre, apellidoPaterno, apellidoMaterno, curp, tipoSeguro, cantidad, vigencia, fechaRecepcion FROM clientes";
+       String sql = "SELECT nombre, apellidoPaterno, apellidoMaterno, curp, tipoSeguro, cantidad, vigencia, resepcion FROM clientes";
+
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery(sql);
 
@@ -42,7 +105,7 @@ private void cargarClientesEnTabla() {
                 rs.getString("tipoSeguro"),
                  rs.getString("cantidad"),
                 rs.getString("vigencia"),
-                rs.getString("fechaRecepcion")
+                rs.getString("resepcion")
             });
         }
 
@@ -53,10 +116,8 @@ private void cargarClientesEnTabla() {
     }
 }
 
-   
+
     @SuppressWarnings("unchecked")
-    
-    
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -81,6 +142,11 @@ private void cargarClientesEnTabla() {
 
         jButton1.setText("Buscar");
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Ingrese CURP");
@@ -89,7 +155,7 @@ private void cargarClientesEnTabla() {
         jTable1.setForeground(new java.awt.Color(255, 255, 255));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"Edwin", "Luna", "Martinez", "LUME...", "347586", "Robo", "30,456$", "13/07/29", null},
+                {"", "", "", "", "", "", "", "", null},
                 {null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null}
@@ -155,6 +221,11 @@ private void cargarClientesEnTabla() {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+  buscarCliente();
+// TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
