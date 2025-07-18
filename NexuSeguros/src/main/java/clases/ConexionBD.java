@@ -20,12 +20,13 @@ public class ConexionBD {
             sentencia = con.createStatement();
             return con;
         } catch (SQLException e) {
-            System.out.println("Error de conexión: " + e.getMessage());
+            
             return null;
         }
     }
    public static void guardar(Cliente c) {
  String sql = "INSERT INTO clientes(nombre, apellidoPaterno, apellidoMaterno, curp, folio, tipoSeguro, cantidad, vigencia, resepcion) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
 
     try (Connection con = conectar();
          PreparedStatement ps = con.prepareStatement(sql)) {
@@ -39,6 +40,7 @@ public class ConexionBD {
         ps.setString(7, c.getCantidad());
         ps.setString(8, c.getVigencia());
         ps.setString(9, c.getRecepcion()); 
+       
 
         ps.executeUpdate();
         System.out.println("Datos guardados correctamente");

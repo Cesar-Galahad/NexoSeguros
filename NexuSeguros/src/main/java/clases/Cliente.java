@@ -6,6 +6,7 @@ public class Cliente extends User {
     private String cantidad;
     private String vigencia;
     private String resepcion;
+    
 
     public Cliente(String nombre, String apellidoPaterno, String apellidoMaterno, String telefono, String genero, String correo, String contrasena, String usuario,
                    String curp, String folio, String tipoSeguro, String cantidad, String vigencia, String resepcion) {

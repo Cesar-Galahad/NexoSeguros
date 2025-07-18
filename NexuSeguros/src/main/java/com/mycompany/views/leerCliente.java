@@ -72,7 +72,7 @@ public class leerCliente extends javax.swing.JPanel {
         jTable1.setModel(modelo);
 
     } catch (SQLException e) {
-        JOptionPane.showMessageDialog(this, "Error al buscar cliente: " + e.getMessage());
+        
     }
 }
 

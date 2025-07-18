@@ -19,6 +19,7 @@ com\mycompany\views\inicioAgente$4.class
 com\login\bienvenidaAC$2.class
 com\mycompany\nexuseguros\dashboardAdmin$4.class
 clases\LoginDAO.class
+com\mycompany\views\borrarCliente$2.class
 com\mycompany\nexuseguros\dashboardAdmin$15.class
 com\mycompany\views\actualizarCliente.class
 com\mycompany\views\inicioC.class
@@ -34,6 +35,7 @@ com\mycompany\nexuseguros\dashboardAgente$11.class
 com\mycompany\nexuseguros\dashboardAdmin$6.class
 com\mycompany\nexuseguros\dashboardAdmin$14.class
 com\mycompany\nexuseguros\dashboardAgente$3.class
+com\mycompany\views\borrarCliente$1.class
 com\mycompany\views\inicioAgente$3.class
 com\login\bienvenidaAC$3.class
 com\mycompany\views\registrodeCliente$2.class
@@ -48,6 +50,7 @@ com\mycompany\views\perfilAgente.class
 com\mycompany\nexuseguros\dashboardAdmin$3.class
 com\mycompany\views\leerCliente.class
 com\login\bienvenidaAC$1.class
+com\mycompany\views\borrarCliente$3.class
 com\mycompany\views\leerCliente$1.class
 com\mycompany\nexuseguros\dashboardAdmin$8.class
 com\mycompany\views\registrodeCliente$3.class
