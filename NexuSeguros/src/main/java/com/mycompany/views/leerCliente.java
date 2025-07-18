@@ -137,7 +137,7 @@ private void cargarClientesEnTabla() {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Filtrar");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona", "Nombre", "Apellido P", "Apellido M", "Crup", "Folio ", "Tipo S", "Cantidad", "Vigencia", "Recpcion" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Nombre", "Apellido P", "Apellido M", "Crup", "Folio ", "Tipo S", "Cantidad", "Vigencia", "Recpcion" }));
         jComboBox1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jButton1.setText("Buscar");
@@ -161,7 +161,7 @@ private void cargarClientesEnTabla() {
                 {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Nombre", "Apellido P", "Apellido M", "Crup", "Folio", "Tipo S", "Cantidad", "Vigencia", "Recepcion"
+                "Nombre", "Apellido P", "Apellido M", "Curp", "Folio", "Tipo S", "Cantidad", "Vigencia", "Recepcion"
             }
         ));
         jScrollPane1.setViewportView(jTable1);

@@ -107,7 +107,7 @@
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="10">
-                <StringItem index="0" value="Selecciona"/>
+                <StringItem index="0" value="Seleccionar"/>
                 <StringItem index="1" value="Nombre"/>
                 <StringItem index="2" value="Apellido P"/>
                 <StringItem index="3" value="Apellido M"/>
@@ -183,7 +183,7 @@
                       <Data value="null"/>
                       <Data value="null"/>
                     </Column>
-                    <Column editable="true" title="Crup" type="java.lang.Object">
+                    <Column editable="true" title="Curp" type="java.lang.Object">
                       <Data value=""/>
                       <Data value="null"/>
                       <Data value="null"/>
