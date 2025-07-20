@@ -9,9 +9,10 @@ import javax.swing.JPanel;
 
 
 public class dashboardAgente extends javax.swing.JFrame {
-
+private Usuario usuarioActual;
     
     public dashboardAgente() {
+        
         initComponents();
         initStyles();
         setDate();
@@ -391,6 +392,8 @@ public class dashboardAgente extends javax.swing.JFrame {
     }//GEN-LAST:event_botonPerfilCMouseExited
 
     private void botonPerfilCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPerfilCActionPerformed
+
+
         ShowJPanel(new perfilAgente());
     }//GEN-LAST:event_botonPerfilCActionPerformed
 

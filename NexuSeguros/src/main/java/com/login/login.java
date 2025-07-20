@@ -163,39 +163,7 @@ public login(String tipoUsuario) {
             JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos");
         }
         
-        /*
-  String correo = userTxt.getText();
-    String contrasena = String.valueOf(passTxt.getPassword());
-    agente agenteEncontrado = AgenteDatos.buscarAgente(correo, contrasena);
-    
-
-    if (correo.isEmpty() || contrasena.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Por favor, ingrese correo y contraseña");
-        return;
-    }
-
-    if (tipoUsuario.equals("agente")) {
-        agente agente = AgenteDatos.buscarAgente(correo, contrasena);
-        if (agente != null) {
-            SesionAgente.agenteLogueado = agente;
-            JOptionPane.showMessageDialog(this, "Bienvenido agente");
-            dashboardAgente dA = new dashboardAgente();
-            dA.setVisible(true);
-            this.dispose();
-        } else {
-            JOptionPane.showMessageDialog(this, "Credenciales de agente incorrectas");
-        }
-    } else if (tipoUsuario.equals("cliente")) {
-        Cliente cliente = ClienteDatos.buscarCliente(correo, contrasena);
-        if (cliente != null) {
-            JOptionPane.showMessageDialog(this, "Bienvenido cliente");
-            dashboardCliente dC = new dashboardCliente();
-            dC.setVisible(true);
-            this.dispose();
-        } else {
-            JOptionPane.showMessageDialog(this, "Credenciales de cliente incorrectas");
-        }
-    }*/
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void userTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userTxtActionPerformed
