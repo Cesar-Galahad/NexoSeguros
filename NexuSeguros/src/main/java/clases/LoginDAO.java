@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 
 public class LoginDAO {
 
-    // Variable estática para guardar el usuario validado
+ 
     public static Usuario usuarioLogueado = null;
 
     public static boolean validarLogin(String usuario, String contrasena) {
@@ -20,7 +20,7 @@ public class LoginDAO {
 
             ResultSet rs = ps.executeQuery();
             if (rs.next()) { 
-                // Si encontró el usuario, creamos el objeto Usuario con sus datos
+             
                 usuarioLogueado = new Usuario();
                 usuarioLogueado.setId(rs.getInt("id"));
                 usuarioLogueado.setUsuario(rs.getString("usuario"));
@@ -31,7 +31,7 @@ public class LoginDAO {
                 usuarioLogueado.setSucursal(rs.getString("sucursal"));
                 return true;
             } else {
-                usuarioLogueado = null; // No encontrado, limpiar usuarioLogueado
+                usuarioLogueado = null; 
                 return false;
             }
         } catch (Exception e) {

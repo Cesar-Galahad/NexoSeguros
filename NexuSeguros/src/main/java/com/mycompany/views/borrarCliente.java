@@ -64,18 +64,18 @@ public class borrarCliente extends javax.swing.JPanel {
 }
     
    private void borrarCliente() {
-    int fila = jTable1.getSelectedRow(); // índice del cliente seleccionado
+    int fila = jTable1.getSelectedRow(); 
 
     if (fila == -1) {
         JOptionPane.showMessageDialog(this, "Selecciona un cliente en la tabla para borrar.");
         return;
     }
 
-    // Obtener datos de la fila seleccionada
+    
     String nombre = jTable1.getValueAt(fila, 0).toString();
     String apellidoP = jTable1.getValueAt(fila, 1).toString();
     String apellidoM = jTable1.getValueAt(fila, 2).toString();
-    String curp = jTable1.getValueAt(fila, 3).toString(); // usaremos el CURP para borrar
+    String curp = jTable1.getValueAt(fila, 3).toString(); 
 
     int confirmar = JOptionPane.showConfirmDialog(this,
         "¿Deseas borrar al cliente:\n" +
@@ -93,7 +93,7 @@ public class borrarCliente extends javax.swing.JPanel {
 
             if (eliminado > 0) {
                 JOptionPane.showMessageDialog(this, "Cliente borrado correctamente.");
-                buscarCliente(); // vuelve a buscar para actualizar la tabla
+                buscarCliente(); 
             } else {
                 JOptionPane.showMessageDialog(this, "No se encontró cliente para borrar.");
             }

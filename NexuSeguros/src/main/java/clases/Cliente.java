@@ -21,7 +21,7 @@ public class Cliente extends User {
 
     private String curp;
 
-    // Getters
+
     public String getCurp() {
         return curp;
     }
