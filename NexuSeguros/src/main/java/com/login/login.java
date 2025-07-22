@@ -1,12 +1,13 @@
 package com.login;
 import clases.LoginDAO;
+import clases.Usuario;
 import com.mycompany.nexuseguros.dashboardAgente;
 import com.mycompany.nexuseguros.dashboardCliente;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 
 public class login extends javax.swing.JFrame {
-
+private Usuario usuario;
   private String tipoUsuario;
 
 public login(String tipoUsuario) {
@@ -154,14 +155,14 @@ public login(String tipoUsuario) {
         String usuario = userTxt.getText();
         String pass = new String(passTxt.getPassword());
 
-        if (LoginDAO.validarLogin(usuario, pass)) {
+     if (LoginDAO.validarLogin(usuario, pass)) {
             JOptionPane.showMessageDialog(this, "Acceso permitido");
             dashboardAgente dA = new dashboardAgente();
             dA.setVisible(true);
             this.dispose();
         } else {
             JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos");
-        }
+}
         
         
     }//GEN-LAST:event_jButton1ActionPerformed

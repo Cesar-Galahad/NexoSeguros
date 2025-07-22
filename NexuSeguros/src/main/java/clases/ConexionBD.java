@@ -48,7 +48,6 @@ public class ConexionBD {
     } catch (SQLException e) {
         System.out.println("Error al guardar: " + e.getMessage());
     }
-}
-
+   }
 
 }

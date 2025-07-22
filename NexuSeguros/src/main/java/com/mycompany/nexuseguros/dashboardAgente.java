@@ -1,5 +1,6 @@
 package com.mycompany.nexuseguros;
 
+import clases.Usuario;
 import com.login.bienvenidaAC;
 import com.mycompany.views.*;
 import java.awt.BorderLayout;
@@ -9,18 +10,23 @@ import javax.swing.JPanel;
 
 
 public class dashboardAgente extends javax.swing.JFrame {
-private Usuario usuarioActual;
+private Usuario usuario;
     
     public dashboardAgente() {
-        
+       
         initComponents();
         initStyles();
         setDate();
         initContent();
+       
     }
+ 
+    
+    
+    
+    
     private void initStyles(){
-        /*nombreSistema.putClientProperty( "FlatLaf.style", "font: 20 $light.font" );
-        nombreSistema.setForeground(Color.black);*/
+       
     }
     private void setDate(){
         LocalDate now = LocalDate.now();
@@ -459,36 +465,32 @@ private Usuario usuarioActual;
         ShowJPanel(new borrarCliente());
     }//GEN-LAST:event_botonBorrarActionPerformed
 
-    
-    public static void main(String args[]) {
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+public static void main(String args[]) {
+    try {
+        for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            if ("Nimbus".equals(info.getName())) {
+                javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                break;
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(dashboardAgente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(dashboardAgente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(dashboardAgente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(dashboardAgente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
+    } catch (ClassNotFoundException ex) {
+        java.util.logging.Logger.getLogger(dashboardAgente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (InstantiationException ex) {
+        java.util.logging.Logger.getLogger(dashboardAgente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (IllegalAccessException ex) {
+        java.util.logging.Logger.getLogger(dashboardAgente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        java.util.logging.Logger.getLogger(dashboardAgente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    }
 
-        java.awt.EventQueue.invokeLater(new Runnable() {
+    java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new dashboardAgente().setVisible(true);
             }
         });
     }
+
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonActualizar;

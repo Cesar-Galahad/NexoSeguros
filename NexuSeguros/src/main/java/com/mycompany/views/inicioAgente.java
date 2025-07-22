@@ -41,27 +41,31 @@ public class inicioAgente extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        SeguroDeAuto1 = new javax.swing.JTextArea();
 
         setBackground(new java.awt.Color(51, 51, 51));
+        setPreferredSize(new java.awt.Dimension(685, 480));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setPreferredSize(new java.awt.Dimension(685, 480));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         SeguroDeAuto.setColumns(20);
         SeguroDeAuto.setRows(5);
-        SeguroDeAuto.setText("edwin");
+        SeguroDeAuto.setText("                                     Seguro de auto\n\n1- Daños a terceros\nCubre los daños materiales y lesiones corporales que \npuedas causar a otras personas o vehículos en un accidente \ndonde tú eres responsable\n\n2- Daños materiales al vehículo asegurado\nProtege tu auto contra daños ocasionados por\naccidentes, volcaduras, choques, caída de objetos, entre otros\n\n3- Robo total o parcial\nCubre el robo del vehículo completo o de partes\n específicas, como espejos, rines o estéreos, \ndependiendo del tipo de cobertura.\n\n4- Responsabilidad civil\nAmpara el pago de daños a terceros por lesiones,\n muerte o afectaciones a sus bienes. Este es obligatorio\n por ley en muchos países\n\n5- Gastos médicos ocupantes\nCubre los gastos médicos de los ocupantes del vehículo\n asegurado en caso de accidente, incluyendo hospitalización,\n medicamentos y atención médica.\n\n");
         SeguroDeAuto.setBorder(null);
         jScrollPane2.setViewportView(SeguroDeAuto);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(343, 20, 340, 460));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 340, 460));
 
         SeguroDeRobo.setColumns(20);
         SeguroDeRobo.setRows(5);
-        SeguroDeRobo.setText("oscar");
+        SeguroDeRobo.setText("                                        Seguro de robo\n\n1- Robo total del vehículo\nCubre el valor del automóvil en caso de que sea sustraído\ny no sea recuperado. La aseguradora indemniza al asegurado\ncon base en el valor comercial o convenido del vehículo.\n\n2- Robo parcial\nAlgunas pólizas incluyen robo de partes o accesorios del\nvehículo,  como llantas, espejos, estéreos, computadoras, \nentre otros.\n\n3- Daños por intento de robo\nSi el vehículo no fue robado, pero sufrió daños por intento \nde robo (como cristales rotos, cerraduras forzadas o cableado\n dañado), el seguro puede cubrir la reparación.\n\n4- Gastos derivados del robo\nAlgunas aseguradoras cubren gastos como el traslado \ndel vehículo si es recuperado o la gestoría para el\n trámite de baja ante autoridades.\n\n5- Asistencia legal y orientación\nEn muchos casos, el seguro también ofrece asesoría\njurídica para levantar la denuncia ante el Ministerio\nPúblico y llevar el proceso legal correspondiente.");
         SeguroDeRobo.setBorder(new javax.swing.border.MatteBorder(null));
         jScrollPane1.setViewportView(SeguroDeRobo);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(345, 20, 340, 460));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 340, 460));
 
         SEGURO_DE_AUTO.setBackground(new java.awt.Color(51, 51, 51));
         SEGURO_DE_AUTO.setForeground(new java.awt.Color(255, 255, 255));
@@ -109,19 +113,19 @@ public class inicioAgente extends javax.swing.JPanel {
 
         SeguroDeVida.setColumns(20);
         SeguroDeVida.setRows(5);
-        SeguroDeVida.setText("Cesar");
+        SeguroDeVida.setText("                                  Seguro de vida\n\n1- Fallecimiento del asegurado\nEs la cobertura principal. En caso de que el asegurado fallezca,\nla aseguradora paga la suma asegurada a los\nbeneficiarios designados.\n\n2- Invalidez total y permanente\nSi el asegurado sufre una discapacidad que le impida\nseguir trabajando, puede recibir el pago total \no parcial de la suma asegurada.\n\n3- Enfermedades graves\nAlgunas pólizas cubren enfermedades como cáncer, \ninfarto o accidente cerebrovascular, brindando \nun adelanto del capital asegurado para cubrir gastos médicos.\n\n4- Gastos funerarios\nAlgunas aseguradoras ofrecen cobertura para cubrir los costos\n del funeral, ya sea como reembolso o servicio directo.\n\n5- Ahorro o inversión (en seguros de vida con componente\nfinanciero)En pólizas de vida con ahorro, parte de las primas\nse destinan a generar un fondo que el asegurado puede\nretirar en el futuro o usar como complemento para su retiro.\n");
         SeguroDeVida.setBorder(new javax.swing.border.MatteBorder(null));
         jScrollPane3.setViewportView(SeguroDeVida);
 
-        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(345, 20, 340, 460));
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 340, 460));
 
         SeguroDeIncendio.setColumns(20);
         SeguroDeIncendio.setRows(5);
-        SeguroDeIncendio.setText("Saul");
+        SeguroDeIncendio.setText("                                      Seguro de incendio\n\n1- Daños por incendio o explosión\nCubre los daños materiales causados directamente por fuego,\nexplosión de gas, cortocircuitos o combustión accidental.\n\n2- Pérdida total o parcial del inmueble\nEn caso de que el incendio destruya total o parcialmente\nla propiedad asegurada, la aseguradora indemniza\nal propietario según el valor estipulado en la póliza.\n\n3- Contenido del inmueble\nProtege muebles, electrodomésticos, maquinaria, \nmercancías u otros bienes dentro del inmueble \nasegurado al momento del siniestro.\n\n4- Gastos de demolición y remoción de escombros\nCubre los costos necesarios para demoler estructuras\ndañadas y retirar restos del incendio.\n\n5- Gastos de reconstrucción o reparación\nLa aseguradora puede cubrir parcial o totalmente los\ncostos para restaurar la propiedad a su estado original.\n\n");
         SeguroDeIncendio.setBorder(new javax.swing.border.MatteBorder(null));
         jScrollPane4.setViewportView(SeguroDeIncendio);
 
-        jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(345, 20, 340, 460));
+        jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 340, 460));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/seguro-incendio.gif"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 110, 110));
@@ -135,15 +139,24 @@ public class inicioAgente extends javax.swing.JPanel {
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/seguro-vida.gif"))); // NOI18N
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 110, 110));
 
+        SeguroDeAuto1.setColumns(20);
+        SeguroDeAuto1.setRows(5);
+        SeguroDeAuto1.setBorder(null);
+        jScrollPane5.setViewportView(SeguroDeAuto1);
+
+        jPanel1.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(343, 20, 340, 460));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 695, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -183,6 +196,7 @@ SeguroDeIncendio.setVisible(true);
     private javax.swing.JButton SEGURO_DE_ROBO;
     private javax.swing.JButton SEGURO_DE_VIDA;
     private javax.swing.JTextArea SeguroDeAuto;
+    private javax.swing.JTextArea SeguroDeAuto1;
     private javax.swing.JTextArea SeguroDeIncendio;
     private javax.swing.JTextArea SeguroDeRobo;
     private javax.swing.JTextArea SeguroDeVida;
@@ -195,6 +209,7 @@ SeguroDeIncendio.setVisible(true);
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     // End of variables declaration//GEN-END:variables
 
     private void setLocationRelativeTo(inicioAgente aThis) {

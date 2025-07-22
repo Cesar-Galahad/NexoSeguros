@@ -2,15 +2,18 @@
 package com.mycompany.views;
 
 
+
+
 public class perfilAgente extends javax.swing.JPanel {
 
   
     public perfilAgente() {
         initComponents();
-      
+        
     }
 
   
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
