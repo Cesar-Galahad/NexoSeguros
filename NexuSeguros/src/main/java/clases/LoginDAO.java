@@ -6,6 +6,9 @@ import java.sql.ResultSet;
 
 public class LoginDAO {
 
+    // Variable estática para guardar el usuario validado
+    public static Usuario usuarioLogueado = null;
+
     public static boolean validarLogin(String usuario, String contrasena) {
         String sql = "SELECT * FROM usuarios WHERE usuario = ? AND contrasena = ?";
         
@@ -16,11 +19,25 @@ public class LoginDAO {
             ps.setString(2, contrasena);
 
             ResultSet rs = ps.executeQuery();
-            return rs.next(); // Si encuentra un resultado, es válido
+            if (rs.next()) { 
+                // Si encontró el usuario, creamos el objeto Usuario con sus datos
+                usuarioLogueado = new Usuario();
+                usuarioLogueado.setId(rs.getInt("id"));
+                usuarioLogueado.setUsuario(rs.getString("usuario"));
+                usuarioLogueado.setNombre(rs.getString("nombre"));
+                usuarioLogueado.setTelefono(rs.getString("telefono"));
+                usuarioLogueado.setCorreo(rs.getString("correo"));
+                usuarioLogueado.setTipo(rs.getString("tipo"));
+                usuarioLogueado.setSucursal(rs.getString("sucursal"));
+                return true;
+            } else {
+                usuarioLogueado = null; // No encontrado, limpiar usuarioLogueado
+                return false;
+            }
         } catch (Exception e) {
             e.printStackTrace();
+            usuarioLogueado = null;
             return false;
         }
     }
 }
-

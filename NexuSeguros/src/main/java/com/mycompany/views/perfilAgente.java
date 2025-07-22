@@ -1,6 +1,8 @@
 
 package com.mycompany.views;
 
+import clases.Usuario;
+
 
 
 
@@ -12,7 +14,17 @@ public class perfilAgente extends javax.swing.JPanel {
         
     }
 
-  
+  public perfilAgente(Usuario usuario) {
+        initComponents();
+        if(usuario != null) {
+            nomAgente.setText(usuario.getNombre());
+            teleonoAgente.setText(usuario.getTelefono());
+            usuAgente.setText(usuario.getUsuario());
+            correoAgente.setText(usuario.getCorreo());
+            idAgente.setText(String.valueOf(usuario.getId()));
+            Sucursal.setText(usuario.getSucursal());
+        }
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

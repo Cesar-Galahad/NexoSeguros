@@ -12,16 +12,32 @@ import javax.swing.JPanel;
 public class dashboardAgente extends javax.swing.JFrame {
 private Usuario usuario;
     
-    public dashboardAgente() {
-       
+   public dashboardAgente(Usuario usuario) {
+        this.usuario = usuario; // guardas el usuario recibido
         initComponents();
         initStyles();
         setDate();
         initContent();
-       
+        mostrarDatosUsuario(); // método para mostrar datos del usuario, lo defines tú
+    }
+ public dashboardAgente() {
+        initComponents();
+        initStyles();
+        setDate();
+        initContent();
     }
  
-    
+  private void mostrarDatosUsuario() {
+        if (usuario != null) {
+            jLabel1.setText("Bienvenido " + usuario.getNombre());
+            // Aquí puedes mostrar más datos si tienes etiquetas o campos en el dashboard
+        }
+    }
+    private void actualizarNombreEncabezado() {
+        if(usuario != null) {
+            jLabel1.setText("Bienvenido " + usuario.getNombre());
+        }
+    }
     
     
     
@@ -400,7 +416,12 @@ private Usuario usuario;
     private void botonPerfilCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPerfilCActionPerformed
 
 
-        ShowJPanel(new perfilAgente());
+         if(usuario != null) {
+        perfilAgente perfil = new perfilAgente(usuario);
+        ShowJPanel(perfil);
+    } else {
+        ShowJPanel(new perfilAgente()); // Por si no hay usuario cargado
+    }
     }//GEN-LAST:event_botonPerfilCActionPerformed
 
     private void botonBuscarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonBuscarMouseEntered
