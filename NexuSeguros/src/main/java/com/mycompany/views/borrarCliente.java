@@ -36,7 +36,7 @@ public class borrarCliente extends javax.swing.JPanel {
 
     if (columnaBD == null) return;
 
-    String sql = "SELECT * FROM clientes WHERE " + columnaBD + " LIKE '%" + valor + "%'";
+String sql = "SELECT * FROM Cliente WHERE " + columnaBD + " LIKE '%" + valor + "%'";
     DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
     modelo.setRowCount(0);
 
@@ -63,46 +63,43 @@ public class borrarCliente extends javax.swing.JPanel {
     }
 }
     
-   private void borrarCliente() {
-    int fila = jTable1.getSelectedRow(); 
+  public void borrarCliente() {
+    int fila = jTable1.getSelectedRow();
 
     if (fila == -1) {
-        JOptionPane.showMessageDialog(this, "Selecciona un cliente en la tabla para borrar.");
+        JOptionPane.showMessageDialog(this, "Selecciona un cliente en la tabla para eliminar.", "Sin selección", JOptionPane.WARNING_MESSAGE);
         return;
     }
 
-    
-    String nombre = jTable1.getValueAt(fila, 0).toString();
-    String apellidoP = jTable1.getValueAt(fila, 1).toString();
-    String apellidoM = jTable1.getValueAt(fila, 2).toString();
-    String curp = jTable1.getValueAt(fila, 3).toString(); 
+    // Obtener ID del cliente desde la columna 0
+    int idCliente = Integer.parseInt(jTable1.getValueAt(fila, 0).toString());
 
-    int confirmar = JOptionPane.showConfirmDialog(this,
-        "¿Deseas borrar al cliente:\n" +
-        nombre + " " + apellidoP + " " + apellidoM + "\nCURP: " + curp + "?",
-        "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
+    int confirmacion = JOptionPane.showConfirmDialog(this,
+            "¿Estás seguro de que deseas eliminar este cliente?",
+            "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
 
-    if (confirmar == JOptionPane.YES_OPTION) {
-        String sql = "DELETE FROM clientes WHERE curp = ?";
+    if (confirmacion == JOptionPane.YES_OPTION) {
+        String sql = "DELETE FROM Cliente WHERE id_cliente = ?";
 
         try (Connection con = ConexionBD.conectar();
-             java.sql.PreparedStatement ps = con.prepareStatement(sql)) {
+             PreparedStatement ps = con.prepareStatement(sql)) {
 
-            ps.setString(1, curp);
-            int eliminado = ps.executeUpdate();
+            ps.setInt(1, idCliente);
+            int filasAfectadas = ps.executeUpdate();
 
-            if (eliminado > 0) {
-                JOptionPane.showMessageDialog(this, "Cliente borrado correctamente.");
-                buscarCliente(); 
+            if (filasAfectadas > 0) {
+                JOptionPane.showMessageDialog(this, "Cliente eliminado correctamente.");
+                buscarCliente(); // Actualizar tabla
             } else {
-                JOptionPane.showMessageDialog(this, "No se encontró cliente para borrar.");
+                JOptionPane.showMessageDialog(this, "No se pudo eliminar el cliente.");
             }
 
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error al borrar: " + e.getMessage());
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Error al eliminar cliente: " + e.getMessage());
         }
     }
 }
+
 
     
 
@@ -224,7 +221,65 @@ public class borrarCliente extends javax.swing.JPanel {
     }//GEN-LAST:event_ButtonBorrarActionPerformed
 
     private void ButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBuscarActionPerformed
-buscarCliente();
+ String filtro = (String) jComboBox1.getSelectedItem();
+    String valor = jTextField1.getText().trim();
+
+    if (filtro.equals("Seleccionar") || valor.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Selecciona un filtro y escribe un valor");
+        return;
+    }
+
+    String columnaBD = switch (filtro) {
+        case "Nombre" -> "nombre";
+        case "Apellido P" -> "apellido_paterno";
+        case "Apellido M" -> "apellido_materno";
+        case "Curp" -> "curp";
+        default -> null;
+    };
+
+    if (columnaBD == null) return;
+
+    DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+    modelo.setRowCount(0); // Limpiar tabla
+
+    String sql;
+
+    try (Connection con = ConexionBD.conectar()) {
+        PreparedStatement ps;
+
+        // Buscar exacto si es CURP, de lo contrario usar LIKE
+        if (columnaBD.equals("curp")) {
+            sql = "SELECT * FROM Cliente WHERE TRIM(curp) = ?";
+            ps = con.prepareStatement(sql);
+            ps.setString(1, valor);
+        } else {
+            sql = "SELECT * FROM Cliente WHERE TRIM(" + columnaBD + ") LIKE ?";
+            ps = con.prepareStatement(sql);
+            ps.setString(1, "%" + valor + "%");
+        }
+
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            modelo.addRow(new Object[]{
+                rs.getInt("id_cliente"),
+                rs.getString("nombre"),
+                rs.getString("apellido_paterno"),
+                rs.getString("apellido_materno"),
+                rs.getString("telefono"),
+                rs.getString("direccion"),
+                rs.getString("curp"),
+                rs.getString("rfc"),
+                rs.getString("genero"),
+                rs.getString("tipoSeguro"),
+                rs.getString("recepcion"),
+                rs.getString("vigencia"),
+                rs.getString("cantidad")
+            });
+        }
+
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(this, "Error al buscar cliente: " + e.getMessage());
+    }
 
         // TODO add your handling code here:
     }//GEN-LAST:event_ButtonBuscarActionPerformed

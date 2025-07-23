@@ -20,6 +20,7 @@ com\login\login$2.class
 com\mycompany\views\inicioAgente$4.class
 com\login\bienvenidaAC$2.class
 com\mycompany\nexuseguros\dashboardAdmin$4.class
+com\mycompany\views\registrodeCliente$7.class
 clases\LoginDAO.class
 com\mycompany\views\borrarCliente$2.class
 com\mycompany\nexuseguros\dashboardAdmin$15.class
@@ -29,7 +30,9 @@ com\mycompany\nexuseguros\dashboardAgente$4.class
 com\login\login$1.class
 com\mycompany\views\actualizarCliente$1.class
 com\mycompany\nexuseguros\NexuSeguros.class
+com\mycompany\views\registrodeCliente$10.class
 com\mycompany\nexuseguros\dashboardCliente$4.class
+com\mycompany\views\registrodeCliente$9.class
 clases\Cliente.class
 com\login\bienvenidaAC$4.class
 clases\ConexionBD.class
@@ -41,6 +44,7 @@ com\mycompany\nexuseguros\dashboardAdmin$14.class
 com\mycompany\nexuseguros\dashboardAgente$3.class
 com\mycompany\views\borrarCliente$1.class
 com\mycompany\views\inicioAgente$3.class
+com\mycompany\views\registrodeCliente$8.class
 com\login\bienvenidaAC$3.class
 com\mycompany\views\registrodeCliente$2.class
 com\mycompany\nexuseguros\dashboardAdmin.class
@@ -74,6 +78,7 @@ com\mycompany\views\borrarCliente.class
 com\mycompany\nexuseguros\dashboardAgente$1.class
 com\mycompany\nexuseguros\dashboardAgente$7.class
 com\mycompany\nexuseguros\dashboardCliente$3.class
+com\mycompany\views\registrodeCliente$6.class
 com\login\login$4.class
 com\mycompany\nexuseguros\dashboardAgente$14.class
 com\mycompany\nexuseguros\dashboardCliente$8.class
@@ -83,3 +88,4 @@ com\mycompany\nexuseguros\dashboardCliente$2.class
 com\login\login$3.class
 com\mycompany\nexuseguros\dashboardAdmin$9.class
 com\mycompany\views\perfilC.class
+com\mycompany\views\registrodeCliente$5.class

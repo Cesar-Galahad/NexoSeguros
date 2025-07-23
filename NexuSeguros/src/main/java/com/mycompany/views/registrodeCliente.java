@@ -1,15 +1,183 @@
 package com.mycompany.views;
 import clases.Cliente;
 import clases.ConexionBD;
+import java.awt.event.KeyEvent;
+
+import javax.swing.JOptionPane;
 
 public class registrodeCliente extends javax.swing.JPanel {
   
    
-   
+    private boolean mensajeMostrado = false;
     
     public registrodeCliente() {
         initComponents();
+         aplicarFiltroSoloLetrasConAlerta(nombreIN);
+        aplicarFiltroSoloLetrasConAlerta(apellidoPIN);
+        aplicarFiltroSoloLetrasConAlerta(apellidoMIN);
+        aplicarFiltroSoloLetrasConAlerta(generoIN);
+       aplicarFiltroTelefono(telefonoIN);
+         aplicarFiltroFecha(jTextField1);
+    aplicarFiltroFecha(jTextField9);
+    aplicarFiltroNumerosYComas(jTextField8);
+        
     }
+    
+        private void aplicarFiltroSoloLetrasConAlerta(javax.swing.JTextField campo) {
+        campo.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                char c = evt.getKeyChar();
+                if (!Character.isLetter(c) && !Character.isWhitespace(c)) {
+                    evt.consume();
+                    if (!mensajeMostrado) {
+                        JOptionPane.showMessageDialog(null, "Solo se permiten letras");
+                        mensajeMostrado = true;
+                    }
+                } else {
+                    mensajeMostrado = false;
+                }
+            }
+        });
+    }
+
+        private void aplicarFiltroTelefono(javax.swing.JTextField campo) {
+    campo.addKeyListener(new java.awt.event.KeyAdapter() {
+        @Override
+        public void keyTyped(java.awt.event.KeyEvent evt) {
+            char c = evt.getKeyChar();
+
+            // Solo permitir números
+            if (!Character.isDigit(c)) {
+                evt.consume();
+                return;
+            }
+
+            // Limitar a 10 caracteres
+            if (campo.getText().length() >= 10) {
+                evt.consume();
+            }
+        }
+    });
+}
+
+    private void aplicarFiltroFecha(javax.swing.JTextField campo) {
+    campo.addKeyListener(new java.awt.event.KeyAdapter() {
+        @Override
+        public void keyTyped(java.awt.event.KeyEvent evt) {
+            char c = evt.getKeyChar();
+            String texto = campo.getText();
+
+          
+            if (!Character.isDigit(c) && c != '/') {
+                evt.consume();
+                return;
+            }
+
+           
+            if (texto.length() >= 8) {
+                evt.consume();
+            }
+        }
+    });
+}
+
+  private void aplicarFiltroNumerosYComas(javax.swing.JTextField campo) {
+    campo.addKeyListener(new java.awt.event.KeyAdapter() {
+        @Override
+        public void keyTyped(java.awt.event.KeyEvent evt) {
+            char c = evt.getKeyChar();
+
+            // Permitir sólo dígitos y coma
+            if (!Character.isDigit(c) && c != ',') {
+                evt.consume();  // Ignorar el carácter
+            }
+        }
+    });
+}
+
+
+private boolean validarCamposConMensajes() {
+    if (nombreIN.getText().isEmpty() ||
+        apellidoPIN.getText().isEmpty() ||
+        apellidoMIN.getText().isEmpty() ||
+        direccionIN.getText().isEmpty() ||
+        generoIN.getText().isEmpty() ||
+        usuarioIN.getText().isEmpty() ||
+        contraIN.getText().isEmpty() ||
+        correoIN1.getText().isEmpty() ||
+        jComboBox1.getSelectedIndex() == -1 ||
+        jTextField8.getText().isEmpty() ||
+        jTextField9.getText().isEmpty() ||
+        jTextField1.getText().isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Por favor, completa todos los campos.", "Campos vacíos", JOptionPane.ERROR_MESSAGE);
+        return false;
+    }
+
+    if (!telefonoIN.getText().matches("\\d{10}")) {
+        JOptionPane.showMessageDialog(this, "El teléfono debe tener exactamente 10 números.", "Teléfono inválido", JOptionPane.ERROR_MESSAGE);
+        return false;
+    }
+
+    if (curpIN.getText().length() != 18) {
+        JOptionPane.showMessageDialog(this, "La CURP debe tener exactamente 18 caracteres.", "CURP inválida", JOptionPane.ERROR_MESSAGE);
+        return false;
+    }
+
+    if (rfcIN.getText().length() != 13) {
+        JOptionPane.showMessageDialog(this, "El RFC debe tener exactamente 13 caracteres.", "RFC inválido", JOptionPane.ERROR_MESSAGE);
+        return false;
+    }
+
+    // Validación del correo electrónico
+    String correo = correoIN1.getText();
+    String regexCorreo = "^[\\w\\.-]+@[\\w\\.-]+\\.[a-zA-Z]{2,6}$";
+    if (!correo.matches(regexCorreo)) {
+        JOptionPane.showMessageDialog(this, "Por favor ingresa un correo electrónico válido.", "Correo inválido", JOptionPane.ERROR_MESSAGE);
+        return false;
+    }
+
+    // Validación formato fecha dd/MM/yy para jTextField1 (Recepción) y jTextField9 (Vigencia)
+    String fechaRegex = "^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/\\d{2}$";
+
+    if (!jTextField1.getText().matches(fechaRegex)) {
+        JOptionPane.showMessageDialog(this, "El campo Recepción debe tener formato dd/MM/aa (ejemplo: 29/07/25).", "Fecha inválida", JOptionPane.ERROR_MESSAGE);
+        return false;
+    }
+
+    if (!jTextField9.getText().matches(fechaRegex)) {
+        JOptionPane.showMessageDialog(this, "El campo Vigencia debe tener formato dd/MM/aa (ejemplo: 29/07/25).", "Fecha inválida", JOptionPane.ERROR_MESSAGE);
+        return false;
+    }
+
+    String valorCampo8 = jTextField8.getText();
+if (!valorCampo8.matches("^[0-9,]+$")) {
+    JOptionPane.showMessageDialog(this, "El campo debe contener solo números y comas (ejemplo: 123,456,789).", "Valor inválido", JOptionPane.ERROR_MESSAGE);
+    return false;
+}
+
+    return true;
+}
+
+
+    
+private void limpiarCampos() {
+    nombreIN.setText("");
+    apellidoPIN.setText("");
+    apellidoMIN.setText("");
+    telefonoIN.setText("");
+    direccionIN.setText("");
+    curpIN.setText("");
+    rfcIN.setText("");
+    generoIN.setText("");
+    usuarioIN.setText("");
+    contraIN.setText("");
+    correoIN1.setText("");
+    jComboBox1.setSelectedIndex(0);
+    jTextField8.setText("");
+    jTextField9.setText("");
+    jTextField1.setText("");
+}    
     
     public void registrarClienteConValidacion() {
     Cliente cliente = registrarCliente();
@@ -57,6 +225,10 @@ public class registrodeCliente extends javax.swing.JPanel {
     );
     return cliente;
 }
+   
+   
+   
+   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -157,6 +329,11 @@ public class registrodeCliente extends javax.swing.JPanel {
         curpIN.setBorder(null);
 
         jTextField8.setBorder(null);
+        jTextField8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField8ActionPerformed(evt);
+            }
+        });
 
         jTextField9.setBorder(null);
 
@@ -223,6 +400,11 @@ public class registrodeCliente extends javax.swing.JPanel {
         direccionIN.setBorder(null);
 
         correoIN1.setBorder(null);
+        correoIN1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                correoIN1ActionPerformed(evt);
+            }
+        });
 
         jLabel17.setText("cantidad");
 
@@ -428,7 +610,23 @@ public class registrodeCliente extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextField7ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-registrarClienteConValidacion();
+                                            
+    if (!validarCamposConMensajes()) {
+        return; // Ya muestra mensajes dentro del método
+    }
+
+    Cliente cliente = registrarCliente();
+
+    if (ConexionBD.curpExiste(cliente.getCurp())) {
+        JOptionPane.showMessageDialog(this, "La CURP ya está registrada.", "CURP duplicada", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    ConexionBD.guardar(cliente);
+    JOptionPane.showMessageDialog(this, "Cliente registrado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+
+    limpiarCampos();
+
 
       
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -440,6 +638,15 @@ registrarClienteConValidacion();
     private void nombreINActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreINActionPerformed
 
     }//GEN-LAST:event_nombreINActionPerformed
+
+    private void correoIN1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_correoIN1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_correoIN1ActionPerformed
+
+    private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField8ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField apellidoMIN;
