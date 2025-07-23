@@ -152,19 +152,26 @@ public login(String tipoUsuario) {
     }//GEN-LAST:event_passTxtMousePressed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       String usuarioIngresado = userTxt.getText();
-String contrasenaIngresada = new String(passTxt.getPassword());
+       String usuario = userTxt.getText();
+String contrasena = new String(passTxt.getPassword());
 
-if (LoginDAO.validarLogin(usuarioIngresado, contrasenaIngresada)) {
-    Usuario usuarioLogueado = LoginDAO.usuarioLogueado;
+Usuario usuarioLogueado = LoginDAO.validarLogin(usuario, contrasena);
+
+if (usuarioLogueado != null && 
+    (usuarioLogueado.getTipo().equalsIgnoreCase("agente") ||
+     usuarioLogueado.getTipo().equalsIgnoreCase("admin"))) {
+
     dashboardAgente dash = new dashboardAgente(usuarioLogueado);
     dash.setVisible(true);
-    this.dispose();
+    this.dispose(); 
+
+} else if (usuarioLogueado != null) {
+  
+    JOptionPane.showMessageDialog(this, "No tienes permisos para entrar.");
 } else {
-    JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos");
+   
+    JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos.");
 }
-        
-        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void userTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userTxtActionPerformed

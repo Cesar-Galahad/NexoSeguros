@@ -17,61 +17,66 @@ public class leerCliente extends javax.swing.JPanel {
     }
     
     private void buscarCliente() {
-    String filtro = (String) jComboBox1.getSelectedItem();
-    String valor = jTextField1.getText().trim();
+        String filtro = (String) jComboBox1.getSelectedItem();
+        String valor = jTextField1.getText().trim();
 
-    if (filtro.equals("Selecciona") || valor.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Selecciona un campo y escribe un valor para buscar.");
-        return;
-    }
+        if (filtro.equals("Seleccionar") || valor.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Selecciona un campo y escribe un valor para buscar.");
+            return;
+        }
 
     String columnaBD = switch (filtro) {
-        case "Nombre" -> "nombre";
-        case "Apellido P" -> "apellidoPaterno";
-        case "Apellido M" -> "apellidoMaterno";
-        case "Crup" -> "curp";
-        case "Folio " -> "folio";
-        case "Tipo S" -> "tipoSeguro";
-        case "Cantidad" -> "cantidad";
-        case "Vigencia" -> "vigencia";
-        case "Recpcion" -> "recepcion";
-        default -> null;
-    };
+            case "Nombre" -> "nombre";
+            case "Apellido P" -> "apellido_paterno";
+            case "Apellido M" -> "apellido_materno";
+            case "Crup" -> "curp";
+            case "Folio " -> "id_cliente";
+            case "Tipo S" -> "tipoSeguro";
+            case "Cantidad" -> "cantidad";
+            case "Vigencia" -> "vigencia";
+            case "Recpcion" -> "recepcion";
+            default -> null;
+        };
 
     if (columnaBD == null) return;
 
-    DefaultTableModel modelo = new DefaultTableModel();
-    modelo.addColumn("Nombre");
-    modelo.addColumn("Apellido P");
-    modelo.addColumn("Apellido M");
-    modelo.addColumn("CURP");
-    modelo.addColumn("Tipo de Seguro");
-    modelo.addColumn("Cantidad");
-    modelo.addColumn("Vigencia");
-    modelo.addColumn("Recepción");
+    DefaultTableModel modelo = new DefaultTableModel(null, new String[]{
+            "ID", "Nombre", "Apellido P", "Apellido M", "Teléfono", "Dirección", "CURP", "RFC", "Género", "Tipo de Seguro", "Recepción", "Vigencia", "Cantidad"
+        }) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; 
+            }
+        };
+    
+     String sql = "SELECT id_cliente, nombre, apellido_paterno, apellido_materno, telefono, direccion, curp, rfc, genero, tipoSeguro, recepcion, vigencia, cantidad FROM Cliente WHERE " + columnaBD + " LIKE '%" + valor + "%'";
 
-    String sql = "SELECT nombre, apellidoPaterno, apellidoMaterno, curp, tipoSeguro, cantidad, vigencia, recepcion FROM clientes WHERE " + columnaBD + " LIKE '%" + valor + "%'";
+        try (Connection con = ConexionBD.conectar();
+             Statement stmt = con.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
 
-    try (Connection con = ConexionBD.conectar();
-         Statement stmt = con.createStatement();
-         ResultSet rs = stmt.executeQuery(sql)) {
-
-        while (rs.next()) {
-            modelo.addRow(new Object[]{
-                rs.getString("nombre"),
-                rs.getString("apellidoPaterno"),
-                rs.getString("apellidoMaterno"),
-                rs.getString("curp"),
-                rs.getString("tipoSeguro"),
-                rs.getString("cantidad"),
-                rs.getString("vigencia"),
-                rs.getString("recepcion")
-            });
+            while (rs.next()) {
+                modelo.addRow(new Object[]{
+                    rs.getInt("id_cliente"),
+                    rs.getString("nombre"),
+                    rs.getString("apellido_paterno"),
+                    rs.getString("apellido_materno"),
+                    rs.getString("telefono"),
+                    rs.getString("direccion"),
+                    rs.getString("curp"),
+                    rs.getString("rfc"),
+                    rs.getString("genero"),
+                    rs.getString("tipoSeguro"),
+                    rs.getString("recepcion"),
+                    rs.getString("vigencia"),
+                    rs.getString("cantidad")
+                });
         }
 
         jTable1.setModel(modelo);
 
     } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Error al buscar clientes: " + e.getMessage());
         
     }
 }
@@ -79,42 +84,49 @@ public class leerCliente extends javax.swing.JPanel {
     
     
     
-private void cargarClientesEnTabla() {
-    DefaultTableModel modelo = new DefaultTableModel();
-    modelo.addColumn("Nombre");
-    modelo.addColumn("Apellido P");
-    modelo.addColumn("Apellido M");
-    modelo.addColumn("CURP");
-    modelo.addColumn("Tipo de Seguro");
-     modelo.addColumn("cantidad");
-    modelo.addColumn("Vigencia");
-    modelo.addColumn("Recepción");
+ private void cargarClientesEnTabla() {
+        DefaultTableModel modelo = new DefaultTableModel(null, new String[]{
+            "ID", "Nombre", "Apellido P", "Apellido M", "Teléfono", "Dirección", "CURP", "RFC", "Género", "Tipo de Seguro", "Recepción", "Vigencia", "Cantidad"
+        }) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
 
-    try (Connection con = ConexionBD.conectar()) {
-       String sql = "SELECT nombre, apellidoPaterno, apellidoMaterno, curp, tipoSeguro, cantidad, vigencia, resepcion FROM clientes";
+        try (Connection con = ConexionBD.conectar()) {
+          String sql = "SELECT id_cliente, nombre, apellido_paterno, apellido_materno, telefono, direccion, curp, rfc, genero, tipoSeguro, recepcion, vigencia, cantidad FROM Cliente";
 
-        Statement stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery(sql);
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
 
-        while (rs.next()) {
-            modelo.addRow(new Object[]{
-                rs.getString("nombre"),
-                rs.getString("apellidoPaterno"),
-                rs.getString("apellidoMaterno"),
-                rs.getString("curp"),
-                rs.getString("tipoSeguro"),
-                 rs.getString("cantidad"),
-                rs.getString("vigencia"),
-                rs.getString("resepcion")
-            });
+            while (rs.next()) {
+                modelo.addRow(new Object[]{
+                    rs.getInt("id_cliente"),
+                    rs.getString("nombre"),
+                    rs.getString("apellido_paterno"),
+                    rs.getString("apellido_materno"),
+                    rs.getString("telefono"),
+                    rs.getString("direccion"),
+                    rs.getString("curp"),
+                    rs.getString("rfc"),
+                    rs.getString("genero"),
+                    rs.getString("tipoSeguro"),
+                    rs.getString("recepcion"),
+                    rs.getString("vigencia"),
+                    rs.getString("cantidad")
+                });
+            }
+
+            jTable1.setModel(modelo);
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Error al cargar los clientes: " + e.getMessage());
         }
-
-        jTable1.setModel(modelo);
-
-    } catch (SQLException e) {
-        JOptionPane.showMessageDialog(this, "Error al cargar los clientes: " + e.getMessage());
     }
-}
+
+  
+
 
 
     @SuppressWarnings("unchecked")
@@ -155,13 +167,13 @@ private void cargarClientesEnTabla() {
         jTable1.setForeground(new java.awt.Color(255, 255, 255));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"", "", "", "", "", "", "", "", null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+                {null, "", "", "", null, null, "", null, null, "", null, "", ""},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Nombre", "Apellido P", "Apellido M", "Curp", "Folio", "Tipo S", "Cantidad", "Vigencia", "Recepcion"
+                "ID", "Nombre", "Apellido P", "Apellido M", "Telefono", "Direccion", "Curp", "Rfc", "genero", "Tipo S", "Resepcion", "Vigencia", "Cantidad"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -182,15 +194,16 @@ private void cargarClientesEnTabla() {
                                 .addComponent(jLabel1)))
                         .addGap(71, 71, 71)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(84, 84, 84)
-                                .addComponent(jButton1))
-                            .addComponent(jLabel2)))
+                                .addComponent(jButton1)))
+                        .addGap(0, 272, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 676, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(87, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addComponent(jScrollPane1)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -204,9 +217,9 @@ private void cargarClientesEnTabla() {
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
-                .addGap(40, 40, 40)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(172, Short.MAX_VALUE))
+                .addGap(36, 36, 36)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(55, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -224,7 +237,7 @@ private void cargarClientesEnTabla() {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
   buscarCliente();
-// TODO add your handling code here:
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

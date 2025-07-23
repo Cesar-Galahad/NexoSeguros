@@ -2,6 +2,7 @@ package com.mycompany.nexuseguros;
 
 import clases.Usuario;
 import com.login.bienvenidaAC;
+import com.login.login;
 import com.mycompany.views.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -445,7 +446,7 @@ private Usuario usuario;
     }//GEN-LAST:event_botonSesionCMouseExited
 
     private void botonSesionCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSesionCActionPerformed
-        bienvenidaAC b1 = new bienvenidaAC();
+        login b1 = new login();
         b1.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_botonSesionCActionPerformed

@@ -3,31 +3,58 @@ import clases.Cliente;
 import clases.ConexionBD;
 
 public class registrodeCliente extends javax.swing.JPanel {
-
+  
+   
+   
+    
     public registrodeCliente() {
         initComponents();
     }
-    public Cliente registrarCliente(){
+    
+    public void registrarClienteConValidacion() {
+    Cliente cliente = registrarCliente();
+
+    if (ConexionBD.curpExiste(cliente.getCurp())) {
+        // Mostrar mensaje que ya existe la CURP
+        javax.swing.JOptionPane.showMessageDialog(this, 
+            "La CURP ya está registrada. No se puede guardar el cliente.",
+            "Error",
+            javax.swing.JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+ 
+    ConexionBD.guardar(cliente);
+
+    javax.swing.JOptionPane.showMessageDialog(this, 
+        "Cliente guardado correctamente.",
+        "Éxito",
+        javax.swing.JOptionPane.INFORMATION_MESSAGE);
+
+
+}
+    
+   public Cliente registrarCliente() {
     String nombre = nombreIN.getText();
     String apellidoPaterno = apellidoPIN.getText();
     String apellidoMaterno = apellidoMIN.getText();
     String telefono = telefonoIN.getText();
-    String genero = generoIN.getText();
-    String correo = correoIN1.getText();  
-    String contrasena = contraIN.getText();
-    String usuario = usuarioIN.getText();
-
+    String direccion = direccionIN.getText();
     String curp = curpIN.getText();
-    String folio = idIN.getText();  
+    String rfc = rfcIN.getText();
+    String genero = generoIN.getText();
+    String usuarioCliente = usuarioIN.getText();
+    String contrasena = contraIN.getText();
+    String correo = correoIN1.getText();
     String tipoSeguro = (String) jComboBox1.getSelectedItem();
-    String cantidad = jTextField8.getText();  
-    String vigencia = jTextField9.getText();  
-    String resepcion = jTextField1.getText(); 
-    Cliente cliente = new Cliente(
-    nombre, apellidoPaterno, apellidoMaterno, telefono, genero, correo, contrasena, usuario,
-    curp, folio, tipoSeguro, cantidad, vigencia, resepcion
-);
+    String cantidad = jTextField8.getText();
+    String vigencia = jTextField9.getText();
+    String recepcion = jTextField1.getText();
 
+    Cliente cliente = new Cliente(
+        nombre, apellidoPaterno, apellidoMaterno, telefono, direccion, curp, rfc, genero,
+        usuarioCliente, contrasena, correo, tipoSeguro, recepcion, vigencia, cantidad
+    );
     return cliente;
 }
     @SuppressWarnings("unchecked")
@@ -49,7 +76,6 @@ public class registrodeCliente extends javax.swing.JPanel {
         apellidoPIN = new javax.swing.JTextField();
         apellidoMIN = new javax.swing.JTextField();
         curpIN = new javax.swing.JTextField();
-        idIN = new javax.swing.JTextField();
         jTextField8 = new javax.swing.JTextField();
         jTextField9 = new javax.swing.JTextField();
         usuarioIN = new javax.swing.JTextField();
@@ -73,7 +99,6 @@ public class registrodeCliente extends javax.swing.JPanel {
         contraIN = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         direccionIN = new javax.swing.JTextField();
-        jLabel16 = new javax.swing.JLabel();
         correoIN1 = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
@@ -130,13 +155,6 @@ public class registrodeCliente extends javax.swing.JPanel {
         });
 
         curpIN.setBorder(null);
-
-        idIN.setBorder(null);
-        idIN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                idINActionPerformed(evt);
-            }
-        });
 
         jTextField8.setBorder(null);
 
@@ -203,9 +221,6 @@ public class registrodeCliente extends javax.swing.JPanel {
         jLabel15.setText("Direccion:");
 
         direccionIN.setBorder(null);
-
-        jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel16.setText("ID");
 
         correoIN1.setBorder(null);
 
@@ -281,7 +296,6 @@ public class registrodeCliente extends javax.swing.JPanel {
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel7)
                                             .addComponent(jLabel15)
-                                            .addComponent(jLabel16)
                                             .addComponent(jLabel3)
                                             .addComponent(jLabel17)
                                             .addComponent(jLabel5)))
@@ -298,7 +312,6 @@ public class registrodeCliente extends javax.swing.JPanel {
                                         .addComponent(jSeparator7)
                                         .addComponent(jSeparator8, javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addComponent(direccionIN, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(idIN, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                 .addContainerGap(55, Short.MAX_VALUE))
         );
@@ -361,9 +374,7 @@ public class registrodeCliente extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel14)
-                            .addComponent(rfcIN, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel17)
-                            .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(rfcIN, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -372,12 +383,15 @@ public class registrodeCliente extends javax.swing.JPanel {
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel15)
                                 .addComponent(generoIN, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addComponent(correoIN1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(idIN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel16))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(correoIN1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(28, 28, 28)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel17)
+                                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(usuarioIN, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -410,27 +424,22 @@ public class registrodeCliente extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jTextField7ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Cliente x = null;
-        x = registrarCliente();
-        ConexionBD.guardar(x);
+registrarClienteConValidacion();
+
+      
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void apellidoMINActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_apellidoMINActionPerformed
-        // TODO add your handling code here:
+      
     }//GEN-LAST:event_apellidoMINActionPerformed
 
     private void nombreINActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreINActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_nombreINActionPerformed
-
-    private void idINActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idINActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_idINActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField apellidoMIN;
@@ -440,7 +449,6 @@ public class registrodeCliente extends javax.swing.JPanel {
     private javax.swing.JTextField curpIN;
     private javax.swing.JTextField direccionIN;
     private javax.swing.JTextField generoIN;
-    private javax.swing.JTextField idIN;
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
@@ -450,7 +458,6 @@ public class registrodeCliente extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
