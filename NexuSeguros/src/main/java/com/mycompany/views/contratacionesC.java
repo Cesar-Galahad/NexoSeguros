@@ -45,6 +45,7 @@ public class contratacionesC extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel1.setText("Usted cuenta con los siguientes seguros");
 
         jTable1.setBackground(new java.awt.Color(51, 51, 51));

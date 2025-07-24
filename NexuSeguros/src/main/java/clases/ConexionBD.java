@@ -14,7 +14,6 @@ public class ConexionBD {
     private static final String PASSWORD = ""; 
     static Statement sentencia;
     public static Connection conectar() {
-        
         try {
             Connection con = DriverManager.getConnection(URL, USER, PASSWORD);
             System.out.println("Conexión exitosa a la base de datos.");
@@ -25,28 +24,27 @@ public class ConexionBD {
             return null;
         }
     }
-  public static void guardar(Cliente c) {
+    //Funcion para guardar a cliente
+    public static void guardar(Cliente c) {
     String sql = "INSERT INTO Cliente(nombre, apellido_paterno, apellido_materno, telefono, direccion, curp, rfc, genero, usuarioCliente, contrasena, tipoSeguro, recepcion, vigencia, cantidad) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     try (Connection con = conectar();
          PreparedStatement ps = con.prepareStatement(sql)) {
 
-       ps.setString(1, c.getNombre());
-ps.setString(2, c.getApellidoPaterno());
-ps.setString(3, c.getApellidoMaterno());
-ps.setString(4, c.getTelefono());
-ps.setString(5, c.getDireccion());
-ps.setString(6, c.getCurp());
-ps.setString(7, c.getRfc());
-ps.setString(8, c.getGenero());
-ps.setString(9, c.getUsuarioCliente());
-ps.setString(10, c.getContrasena());
-ps.setString(11, c.getTipoSeguro());
-ps.setString(12, c.getRecepcion());
-ps.setString(13, c.getVigencia());
-ps.setString(14, c.getCantidad());
-
-
+        ps.setString(1, c.getNombre());
+        ps.setString(2, c.getApellidoPaterno());
+        ps.setString(3, c.getApellidoMaterno());
+        ps.setString(4, c.getTelefono());
+        ps.setString(5, c.getDireccion());
+        ps.setString(6, c.getCurp());
+        ps.setString(7, c.getRfc());
+        ps.setString(8, c.getGenero());
+        ps.setString(9, c.getUsuarioCliente());
+        ps.setString(10, c.getContrasena());
+        ps.setString(11, c.getTipoSeguro());
+        ps.setString(12, c.getRecepcion());
+        ps.setString(13, c.getVigencia());
+        ps.setString(14, c.getCantidad());
         ps.executeUpdate();
         System.out.println("Datos guardados correctamente");
 

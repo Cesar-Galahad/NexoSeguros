@@ -1,6 +1,7 @@
 package com.mycompany.nexuseguros;
 
-import com.login.bienvenidaAC;
+import clases.Usuario;
+import com.login.login;
 import com.mycompany.views.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -9,13 +10,21 @@ import javax.swing.JPanel;
 
 
 public class dashboardAdmin extends javax.swing.JFrame {
-
+    private Usuario usuario;
     
-    public dashboardAdmin() {
+    public dashboardAdmin(Usuario usuario) {
+        this.usuario = usuario; 
         initComponents();
         initStyles();
         setDate();
         initContent();
+        mostrarDatosUsuario();
+    }
+    private void mostrarDatosUsuario() {
+        if (usuario != null) {
+            jLabel1.setText("Bienvenido " + usuario.getNombre());
+           
+        }
     }
     private void initStyles(){
         /*nombreSistema.putClientProperty( "FlatLaf.style", "font: 20 $light.font" );
@@ -27,7 +36,7 @@ public class dashboardAdmin extends javax.swing.JFrame {
         int dia = now.getDayOfMonth();
         int month = now.getMonthValue();
         String[] meses = {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
-        dateText.setText(dia + " de " + meses[month + 1] + " de " + year);
+        dateText.setText(dia + " de " + meses[month - 2] + " de " + year);
     }
     
     private void initContent(){
@@ -38,10 +47,10 @@ public class dashboardAdmin extends javax.swing.JFrame {
         c.setSize(730, 508);
         c.setLocation(0,0);
         
-        contentAgente.removeAll();
-        contentAgente.add(c, BorderLayout.CENTER);
-        contentAgente.revalidate();
-        contentAgente.repaint();
+        contentAdmin.removeAll();
+        contentAdmin.add(c, BorderLayout.CENTER);
+        contentAdmin.revalidate();
+        contentAdmin.repaint();
     }
    
     @SuppressWarnings("unchecked")
@@ -61,7 +70,8 @@ public class dashboardAdmin extends javax.swing.JFrame {
         botonBorrar = new javax.swing.JButton();
         header = new javax.swing.JPanel();
         dateText = new javax.swing.JLabel();
-        contentAgente = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        contentAdmin = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -266,7 +276,7 @@ public class dashboardAdmin extends javax.swing.JFrame {
         menuLayout.setVerticalGroup(
             menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menuLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(24, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -294,33 +304,43 @@ public class dashboardAdmin extends javax.swing.JFrame {
         dateText.setForeground(new java.awt.Color(255, 255, 255));
         dateText.setText("{dayname} {day} de {month} del {year}");
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Bienvenido");
+
         javax.swing.GroupLayout headerLayout = new javax.swing.GroupLayout(header);
         header.setLayout(headerLayout);
         headerLayout.setHorizontalGroup(
             headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(headerLayout.createSequentialGroup()
-                .addContainerGap(362, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, headerLayout.createSequentialGroup()
+                .addContainerGap(326, Short.MAX_VALUE)
                 .addComponent(dateText)
-                .addGap(81, 81, 81))
+                .addGap(117, 117, 117))
         );
         headerLayout.setVerticalGroup(
             headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(headerLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(14, 14, 14)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(dateText)
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
-        contentAgente.setBackground(new java.awt.Color(255, 255, 255));
+        contentAdmin.setBackground(new java.awt.Color(255, 255, 255));
 
-        javax.swing.GroupLayout contentAgenteLayout = new javax.swing.GroupLayout(contentAgente);
-        contentAgente.setLayout(contentAgenteLayout);
-        contentAgenteLayout.setHorizontalGroup(
-            contentAgenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout contentAdminLayout = new javax.swing.GroupLayout(contentAdmin);
+        contentAdmin.setLayout(contentAdminLayout);
+        contentAdminLayout.setHorizontalGroup(
+            contentAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
-        contentAgenteLayout.setVerticalGroup(
-            contentAgenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        contentAdminLayout.setVerticalGroup(
+            contentAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 507, Short.MAX_VALUE)
         );
 
@@ -331,17 +351,17 @@ public class dashboardAdmin extends javax.swing.JFrame {
             .addGroup(fondoLayout.createSequentialGroup()
                 .addComponent(menu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(contentAgente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(contentAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         fondoLayout.setVerticalGroup(
             fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(fondoLayout.createSequentialGroup()
-                .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(contentAgente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(contentAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -403,7 +423,7 @@ public class dashboardAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_botonSesionCMouseExited
 
     private void botonSesionCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSesionCActionPerformed
-        bienvenidaAC b1 = new bienvenidaAC();
+        login b1 = new login();
         b1.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_botonSesionCActionPerformed
@@ -471,7 +491,9 @@ public class dashboardAdmin extends javax.swing.JFrame {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new dashboardAdmin().setVisible(true);
+                Usuario usuarioLogueado = null;
+                dashboardAdmin admin = new dashboardAdmin(usuarioLogueado);
+                admin.setVisible(true);
             }
         });
     }
@@ -484,10 +506,11 @@ public class dashboardAdmin extends javax.swing.JFrame {
     private javax.swing.JButton botonPerfilC;
     private javax.swing.JButton botonRegistro;
     private javax.swing.JButton botonSesionC;
-    private javax.swing.JPanel contentAgente;
+    private javax.swing.JPanel contentAdmin;
     private javax.swing.JLabel dateText;
     private javax.swing.JPanel fondo;
     private javax.swing.JPanel header;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPanel menu;

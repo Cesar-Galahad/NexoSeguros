@@ -1,7 +1,6 @@
 package com.mycompany.nexuseguros;
 
 import clases.Usuario;
-import com.login.bienvenidaAC;
 import com.login.login;
 import com.mycompany.views.*;
 import java.awt.BorderLayout;
@@ -11,9 +10,9 @@ import javax.swing.JPanel;
 
 
 public class dashboardAgente extends javax.swing.JFrame {
-private Usuario usuario;
+    private Usuario usuario;
     
-   public dashboardAgente(Usuario usuario) {
+    public dashboardAgente(Usuario usuario) {
         this.usuario = usuario; 
         initComponents();
         initStyles();
@@ -21,27 +20,20 @@ private Usuario usuario;
         initContent();
         mostrarDatosUsuario(); 
     }
- public dashboardAgente() {
+    public dashboardAgente() {
         initComponents();
         initStyles();
         setDate();
         initContent();
     }
  
-  private void mostrarDatosUsuario() {
+    private void mostrarDatosUsuario() {
         if (usuario != null) {
             jLabel1.setText("Bienvenido " + usuario.getNombre());
            
         }
     }
-    private void actualizarNombreEncabezado() {
-        if(usuario != null) {
-            jLabel1.setText("Bienvenido " + usuario.getNombre());
-        }
-    }
-    
-    
-    
+        
     private void initStyles(){
        
     }
@@ -51,7 +43,7 @@ private Usuario usuario;
         int dia = now.getDayOfMonth();
         int month = now.getMonthValue();
         String[] meses = {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
-        dateText.setText(dia + " de " + meses[month + 1] + " de " + year);
+        dateText.setText(dia + " de " + meses[month - 2] + " de " + year);
     }
     
     private void initContent(){
@@ -291,7 +283,7 @@ private Usuario usuario;
         menuLayout.setVerticalGroup(
             menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menuLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(24, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -315,9 +307,9 @@ private Usuario usuario;
         header.setBackground(new java.awt.Color(97, 192, 191));
         header.setForeground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Bienvenido prueba");
+        jLabel1.setText("Bienvenido");
 
         dateText.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         dateText.setForeground(new java.awt.Color(255, 255, 255));
@@ -330,21 +322,20 @@ private Usuario usuario;
             .addGroup(headerLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, headerLayout.createSequentialGroup()
+                .addContainerGap(333, Short.MAX_VALUE)
                 .addComponent(dateText)
-                .addGap(81, 81, 81))
+                .addGap(124, 124, 124))
         );
         headerLayout.setVerticalGroup(
             headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(headerLayout.createSequentialGroup()
-                .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(headerLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1))
-                    .addGroup(headerLayout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(dateText)))
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(dateText)
+                .addContainerGap())
         );
 
         contentAgente.setBackground(new java.awt.Color(255, 255, 255));
@@ -367,15 +358,15 @@ private Usuario usuario;
             .addGroup(fondoLayout.createSequentialGroup()
                 .addComponent(menu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(contentAgente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, 740, Short.MAX_VALUE)))
+                .addGroup(fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(contentAgente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         fondoLayout.setVerticalGroup(
             fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(fondoLayout.createSequentialGroup()
-                .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(contentAgente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -507,7 +498,9 @@ public static void main(String args[]) {
 
     java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new dashboardAgente().setVisible(true);
+                Usuario usuarioLogueado = null;
+                dashboardAgente agente = new dashboardAgente(usuarioLogueado);
+                agente.setVisible(true);
             }
         });
     }

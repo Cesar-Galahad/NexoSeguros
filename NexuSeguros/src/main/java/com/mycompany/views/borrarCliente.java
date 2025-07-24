@@ -122,6 +122,7 @@ String sql = "SELECT * FROM Cliente WHERE " + columnaBD + " LIKE '%" + valor + "
 
         jLabel1.setText("borrar");
 
+        jTable1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null, null, null, null},
@@ -135,6 +136,9 @@ String sql = "SELECT * FROM Cliente WHERE " + columnaBD + " LIKE '%" + valor + "
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+
+        jComboBox1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Nombre", "Apellido P", "Apellido M", "Curp", " " }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -142,6 +146,7 @@ String sql = "SELECT * FROM Cliente WHERE " + columnaBD + " LIKE '%" + valor + "
             }
         });
 
+        ButtonBuscar.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         ButtonBuscar.setText("Buscar");
         ButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -149,6 +154,7 @@ String sql = "SELECT * FROM Cliente WHERE " + columnaBD + " LIKE '%" + valor + "
             }
         });
 
+        ButtonBorrar.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         ButtonBorrar.setText("Borrar");
         ButtonBorrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -156,6 +162,7 @@ String sql = "SELECT * FROM Cliente WHERE " + columnaBD + " LIKE '%" + valor + "
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel2.setText("Ingresa Dato");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -177,7 +184,7 @@ String sql = "SELECT * FROM Cliente WHERE " + columnaBD + " LIKE '%" + valor + "
                         .addGap(355, 355, 355)
                         .addComponent(jLabel1))
                     .addComponent(jLabel2))
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addContainerGap(80, Short.MAX_VALUE))
             .addComponent(jScrollPane1)
         );
         jPanel1Layout.setVerticalGroup(

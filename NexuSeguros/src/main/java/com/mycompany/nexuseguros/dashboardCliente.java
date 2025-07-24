@@ -1,27 +1,33 @@
 package com.mycompany.nexuseguros;
 
-import com.login.bienvenidaAC;
+import clases.Usuario;
+import com.login.login;
 import com.mycompany.views.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.time.LocalDate;
 import javax.swing.JPanel;
 
-/**
- *
- * @author Uroboros
- */
-public class dashboardCliente extends javax.swing.JFrame {
 
-    /**
-     * Creates new form dashboardAgente
-     */
-    public dashboardCliente() {
+public class dashboardCliente extends javax.swing.JFrame {
+    private Usuario usuario;
+  
+    public dashboardCliente(Usuario usuario) {
+        this.usuario = usuario; 
         initComponents();
         initStyles();
         setDate();
         initContent();
+        mostrarDatosUsuario();
+        
     }
+    private void mostrarDatosUsuario() {
+        if (usuario != null) {
+            jLabel1.setText("Bienvenido " + usuario.getNombre());
+           
+        }
+    }
+
     private void initStyles(){
         /*nombreSistema.putClientProperty( "FlatLaf.style", "font: 20 $light.font" );
         nombreSistema.setForeground(Color.black);*/
@@ -32,21 +38,21 @@ public class dashboardCliente extends javax.swing.JFrame {
         int dia = now.getDayOfMonth();
         int month = now.getMonthValue();
         String[] meses = {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
-        dateText.setText(dia + " de " + meses[month + 1] + " de " + year);
+        dateText.setText(dia + " de " + meses[month - 2] + " de " + year);
     }
     
     private void initContent(){
-        ShowJPanel(new inicioAgente());
+        ShowJPanel(new inicioC());
         
     }
     private void ShowJPanel(JPanel c){
         c.setSize(730, 508);
         c.setLocation(0,0);
         
-        contentAgente.removeAll();
-        contentAgente.add(c, BorderLayout.CENTER);
-        contentAgente.revalidate();
-        contentAgente.repaint();
+        contentCliente.removeAll();
+        contentCliente.add(c, BorderLayout.CENTER);
+        contentCliente.revalidate();
+        contentCliente.repaint();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -68,7 +74,7 @@ public class dashboardCliente extends javax.swing.JFrame {
         header = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         dateText = new javax.swing.JLabel();
-        contentAgente = new javax.swing.JPanel();
+        contentCliente = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -197,7 +203,7 @@ public class dashboardCliente extends javax.swing.JFrame {
         menuLayout.setVerticalGroup(
             menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menuLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(24, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -215,7 +221,7 @@ public class dashboardCliente extends javax.swing.JFrame {
         header.setBackground(new java.awt.Color(97, 192, 191));
         header.setForeground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Bienvenido");
 
@@ -230,31 +236,29 @@ public class dashboardCliente extends javax.swing.JFrame {
             .addGroup(headerLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 169, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, headerLayout.createSequentialGroup()
+                .addContainerGap(400, Short.MAX_VALUE)
                 .addComponent(dateText)
-                .addGap(81, 81, 81))
+                .addGap(55, 55, 55))
         );
         headerLayout.setVerticalGroup(
             headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(headerLayout.createSequentialGroup()
-                .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(headerLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1))
-                    .addGroup(headerLayout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(dateText)))
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(dateText))
         );
 
-        javax.swing.GroupLayout contentAgenteLayout = new javax.swing.GroupLayout(contentAgente);
-        contentAgente.setLayout(contentAgenteLayout);
-        contentAgenteLayout.setHorizontalGroup(
-            contentAgenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout contentClienteLayout = new javax.swing.GroupLayout(contentCliente);
+        contentCliente.setLayout(contentClienteLayout);
+        contentClienteLayout.setHorizontalGroup(
+            contentClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
-        contentAgenteLayout.setVerticalGroup(
-            contentAgenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        contentClienteLayout.setVerticalGroup(
+            contentClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 507, Short.MAX_VALUE)
         );
 
@@ -267,15 +271,15 @@ public class dashboardCliente extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(contentAgente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(contentCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         fondoLayout.setVerticalGroup(
             fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(fondoLayout.createSequentialGroup()
-                .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(contentAgente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(contentCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -325,7 +329,7 @@ public class dashboardCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_botonSesionCMouseExited
 
     private void botonSesionCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSesionCActionPerformed
-        bienvenidaAC b1 = new bienvenidaAC();
+        login b1 = new login();
         b1.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_botonSesionCActionPerformed
@@ -373,7 +377,9 @@ public class dashboardCliente extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new dashboardCliente().setVisible(true);
+                Usuario usuarioLogueado = null;
+                dashboardCliente cliente = new dashboardCliente(usuarioLogueado);
+                cliente.setVisible(true);
             }
         });
     }
@@ -383,7 +389,7 @@ public class dashboardCliente extends javax.swing.JFrame {
     private javax.swing.JButton botonPerfilC;
     private javax.swing.JButton botonSegurosC;
     private javax.swing.JButton botonSesionC;
-    private javax.swing.JPanel contentAgente;
+    private javax.swing.JPanel contentCliente;
     private javax.swing.JLabel dateText;
     private javax.swing.JPanel fondo;
     private javax.swing.JPanel header;

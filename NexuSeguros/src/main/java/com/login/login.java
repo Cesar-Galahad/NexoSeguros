@@ -3,12 +3,13 @@ import clases.LoginDAO;
 import clases.Usuario;
 import com.mycompany.nexuseguros.dashboardAgente;
 import com.mycompany.nexuseguros.dashboardCliente;
+import com.mycompany.nexuseguros.dashboardAdmin;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 
 public class login extends javax.swing.JFrame {
-private Usuario usuario;
-  private String tipoUsuario;
+    private Usuario usuario;
+    private String tipoUsuario;
 
 public login(String tipoUsuario) {
     this.tipoUsuario = tipoUsuario;
@@ -17,8 +18,7 @@ public login(String tipoUsuario) {
     public login() {
         initComponents();
     }
-
-    
+   
     public static void validarAgente(){
     }
     
@@ -152,26 +152,46 @@ public login(String tipoUsuario) {
     }//GEN-LAST:event_passTxtMousePressed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       String usuario = userTxt.getText();
-String contrasena = new String(passTxt.getPassword());
+       String usuario = userTxt.getText().trim();
+    String contrasena = new String(passTxt.getPassword()).trim();
 
-Usuario usuarioLogueado = LoginDAO.validarLogin(usuario, contrasena);
+    // Validar que no estén vacíos
+    if (usuario.isEmpty() || contrasena.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Por favor, completa todos los campos.");
+        return;
+    }
 
-if (usuarioLogueado != null && 
-    (usuarioLogueado.getTipo().equalsIgnoreCase("agente") ||
-     usuarioLogueado.getTipo().equalsIgnoreCase("admin"))) {
+    Usuario usuarioLogueado = LoginDAO.validarLogin(usuario, contrasena);
 
-    dashboardAgente dash = new dashboardAgente(usuarioLogueado);
-    dash.setVisible(true);
-    this.dispose(); 
+    if (usuarioLogueado != null) {
+        String tipo = usuarioLogueado.getTipo().toLowerCase();
 
-} else if (usuarioLogueado != null) {
-  
-    JOptionPane.showMessageDialog(this, "No tienes permisos para entrar.");
-} else {
-   
-    JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos.");
-}
+        switch (tipo) {
+            case "admin":
+                dashboardAdmin admin = new dashboardAdmin(usuarioLogueado);
+                admin.setVisible(true);
+                this.dispose();
+                break;
+
+            case "agente":
+                dashboardAgente agente = new dashboardAgente(usuarioLogueado);
+                agente.setVisible(true);
+                this.dispose();
+                break;
+
+            case "cliente":
+                dashboardCliente cliente = new dashboardCliente(usuarioLogueado);
+                cliente.setVisible(true);
+                this.dispose();
+                break;
+
+            default:
+                JOptionPane.showMessageDialog(this, "Tipo de usuario no reconocido: " + tipo);
+                break;
+        }
+    } else {
+        JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos.");
+    }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void userTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userTxtActionPerformed
