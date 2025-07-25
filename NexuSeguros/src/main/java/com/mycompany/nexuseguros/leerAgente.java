@@ -1,11 +1,14 @@
 
 package com.mycompany.nexuseguros;
 
+import clases.ConexionBD;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -21,6 +24,14 @@ public class leerAgente extends javax.swing.JPanel {
             buscarAgentes();
         }
     });
+          cargarClientesEnTabla();
+          botonbuscar2.addActionListener(new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        buscarCliente();
+    }
+});
+
     }
     
     private void cargarTodosLosAgentes() {
@@ -108,6 +119,121 @@ private void buscarAgentes() {
     }
 }
     
+
+
+
+
+
+    
+
+    
+    
+ private void buscarCliente() {
+    String filtro = (String) jComboBox2.getSelectedItem(); // CAMBIO
+    String valor = jTextField2.getText().trim(); // CAMBIO
+
+    if (filtro.equals("Seleccionar") || valor.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Selecciona un campo y escribe un valor para buscar.");
+        return;
+    }
+
+    String columnaBD = switch (filtro) {
+        case "Nombre" -> "nombre";
+        case "Apellido P" -> "apellido_paterno";
+        case "Apellido M" -> "apellido_materno";
+        case "Crup" -> "curp";
+        case "Folio " -> "id_cliente";
+        case "Tipo S" -> "tipoSeguro";
+        case "Cantidad" -> "cantidad";
+        case "Vigencia" -> "vigencia";
+        case "Recpcion" -> "recepcion";
+        default -> null;
+    };
+
+    if (columnaBD == null) return;
+
+    DefaultTableModel modelo = new DefaultTableModel(null, new String[]{
+        "ID", "Nombre", "Apellido P", "Apellido M", "Telefono", "Direccion", "CURP", "RFC", "genero", "Tipo de Seguro", "Recepcion", "Vigencia", "Cantidad"
+    }) {
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            return false;
+        }
+    };
+
+    String sql = "SELECT * FROM Cliente WHERE " + columnaBD + " LIKE '%" + valor + "%'";
+
+    try (Connection con = ConexionBD.conectar();
+         Statement stmt = con.createStatement();
+         ResultSet rs = stmt.executeQuery(sql)) {
+
+        while (rs.next()) {
+            modelo.addRow(new Object[]{
+                rs.getInt("id_cliente"),
+                rs.getString("nombre"),
+                rs.getString("apellido_paterno"),
+                rs.getString("apellido_materno"),
+                rs.getString("telefono"),
+                rs.getString("direccion"),
+                rs.getString("curp"),
+                rs.getString("rfc"),
+                rs.getString("genero"),
+                rs.getString("tipoSeguro"),
+                rs.getString("recepcion"),
+                rs.getString("vigencia"),
+                rs.getString("cantidad")
+            });
+        }
+
+        jTable2.setModel(modelo); // CAMBIO
+
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(this, "Error al buscar clientes: " + e.getMessage());
+    }
+}
+private void cargarClientesEnTabla() {
+    DefaultTableModel modelo = new DefaultTableModel(null, new String[]{
+        "ID", "Nombre", "Apellido P", "Apellido M", "Telefono", "Direccion", "CURP", "RFC", "genero", "Tipo de Seguro", "Recepcion", "Vigencia", "Cantidad"
+    }) {
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            return false;
+        }
+    };
+
+    try (Connection con = ConexionBD.conectar()) {
+        String sql = "SELECT * FROM Cliente";
+
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery(sql);
+
+        while (rs.next()) {
+            modelo.addRow(new Object[]{
+                rs.getInt("id_cliente"),
+                rs.getString("nombre"),
+                rs.getString("apellido_paterno"),
+                rs.getString("apellido_materno"),
+                rs.getString("telefono"),
+                rs.getString("direccion"),
+                rs.getString("curp"),
+                rs.getString("rfc"),
+                rs.getString("genero"),
+                rs.getString("tipoSeguro"),
+                rs.getString("recepcion"),
+                rs.getString("vigencia"),
+                rs.getString("cantidad")
+            });
+        }
+
+        jTable2.setModel(modelo); // CAMBIO
+
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(this, "Error al cargar los clientes: " + e.getMessage());
+    }
+}
+
+
+  
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -120,6 +246,11 @@ private void buscarAgentes() {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jTextField2 = new javax.swing.JTextField();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        botonbuscar2 = new javax.swing.JButton();
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "ID", "Nombre", "Telefono", "Correo", "Sucursal" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -149,45 +280,87 @@ private void buscarAgentes() {
 
         jLabel3.setText("Inserta dato del filtro:");
 
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Nombre", "Apellido P", "Apelldio M", "Telefono", "Direccion", "Curp", "Rfc", "genero", "Tipo S", "Recepcion", "Vigencia", "Cantidad"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable2);
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "ID", "Nombre", "Apellido P", "Aprellido M", "Direccion", "Curp", "Rfc", "genero", "Tipo S", "Recepcion", "Vigencia", "Cantidad" }));
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
+
+        botonbuscar2.setText("Buscar");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
                 .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                    .addComponent(jLabel3)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(72, 72, 72)
-                .addComponent(botonbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(234, 234, 234))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botonbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(65, 65, 65))))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane2))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(70, 70, 70)
+                .addComponent(botonbuscar2, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(65, 65, 65))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(14, 14, 14)
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel2))
+                .addGap(4, 4, 4)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox1)
+                    .addComponent(botonbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(botonbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1)
-                    .addComponent(jComboBox1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox2)
+                    .addComponent(botonbuscar2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -195,15 +368,24 @@ private void buscarAgentes() {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonbuscar;
+    private javax.swing.JButton botonbuscar2;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }
