@@ -155,7 +155,7 @@ public login(String tipoUsuario) {
        String usuario = userTxt.getText().trim();
     String contrasena = new String(passTxt.getPassword()).trim();
 
-    // Validar que no estén vacíos
+ 
     if (usuario.isEmpty() || contrasena.isEmpty()) {
         JOptionPane.showMessageDialog(this, "Por favor, completa todos los campos.");
         return;

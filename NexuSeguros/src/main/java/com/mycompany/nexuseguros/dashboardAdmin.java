@@ -411,7 +411,7 @@ public class dashboardAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_botonBuscarMouseExited
 
     private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
-        ShowJPanel(new leerCliente());
+        ShowJPanel(new leerAgente());
     }//GEN-LAST:event_botonBuscarActionPerformed
 
     private void botonSesionCMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonSesionCMouseEntered
@@ -449,7 +449,7 @@ public class dashboardAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_botonRegistroMouseExited
 
     private void botonRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistroActionPerformed
-        ShowJPanel(new registrodeCliente());
+        ShowJPanel(new registroAgente());
     }//GEN-LAST:event_botonRegistroActionPerformed
 
     private void botonBorrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonBorrarMouseEntered

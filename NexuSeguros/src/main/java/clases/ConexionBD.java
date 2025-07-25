@@ -69,5 +69,36 @@ public class ConexionBD {
     return false; 
 }
 
+  public static boolean usuarioExiste(String usuario) {
+    String sql = "SELECT COUNT(*) FROM usuario WHERE usuario = ?";
+    try (Connection con = conectar();
+         PreparedStatement ps = con.prepareStatement(sql)) {
+        ps.setString(1, usuario);
+        try (ResultSet rs = ps.executeQuery()) {
+            if (rs.next()) {
+                return rs.getInt(1) > 0;
+            }
+        }
+    } catch (Exception e) {
+        System.out.println("Error al verificar usuario: " + e.getMessage());
+    }
+    return false;
+}
+  public static boolean correoExiste(String correo) {
+    String sql = "SELECT COUNT(*) FROM usuario WHERE correo = ?";
+    try (Connection con = conectar();
+         PreparedStatement ps = con.prepareStatement(sql)) {
+        ps.setString(1, correo);
+        try (ResultSet rs = ps.executeQuery()) {
+            if (rs.next()) {
+                return rs.getInt(1) > 0;
+            }
+        }
+    } catch (Exception e) {
+        System.out.println("Error al verificar correo: " + e.getMessage());
+    }
+    return false;
+}
+  
   
 }
