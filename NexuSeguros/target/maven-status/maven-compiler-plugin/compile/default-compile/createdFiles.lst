@@ -52,6 +52,7 @@ clases\User.class
 com\mycompany\nexuseguros\dashboardAgente$10.class
 com\mycompany\nexuseguros\dashboardCliente$5.class
 com\mycompany\views\inicioAgente.class
+clases\gerente.class
 com\mycompany\views\inicioAgente$2.class
 com\mycompany\nexuseguros\dashboardAgente$2.class
 com\mycompany\views\perfilAgente.class

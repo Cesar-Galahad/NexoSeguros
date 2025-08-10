@@ -53,28 +53,31 @@ public class ConexionBD {
     }
 }
      public static boolean registrarAgente(agente a) {
-        String sql = "INSERT INTO agentes (nombre, apellido_paterno, apellido_materno, telefono, genero, correo, id_sucursal, usuario, contrasena) " +
-                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        try (Connection con = conectar();
-             PreparedStatement ps = con.prepareStatement(sql)) {
+    String sql = "INSERT INTO agentes (nombre, apellido_paterno, apellido_materno, telefono, genero, correo, id_sucursal, usuario, contrasena) " +
+                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    try (Connection con = conectar();
+         PreparedStatement ps = con.prepareStatement(sql)) {
 
-            ps.setString(1, a.getNombre());
-            ps.setString(2, a.getApellidoPaterno());
-            ps.setString(3, a.getApellidoMaterno());
-            ps.setString(4, a.getTelefono());
-            ps.setString(5, a.getGenero());
-            ps.setString(6, a.getCorreo());
-            ps.setInt(7, a.getIdSucursal());
-            ps.setString(8, a.getUsuario());
-            ps.setString(9, a.getContrasena());
-            ps.executeUpdate();
-            System.out.println("Datos guardados correctamente");
+        ps.setString(1, a.getNombre());
+        ps.setString(2, a.getApellidoPaterno());
+        ps.setString(3, a.getApellidoMaterno());
+        ps.setString(4, a.getTelefono());
+        ps.setString(5, a.getGenero());
+        ps.setString(6, a.getCorreo());
+        ps.setInt(7, a.getIdSucursal());
+        ps.setString(8, a.getUsuario());
+        ps.setString(9, a.getContrasena());
+
+        int filas = ps.executeUpdate();
+        System.out.println("Filas insertadas: " + filas);
+
+        return filas > 0; // Si insertó al menos una fila, devuelve true
 
     } catch (SQLException e) {
         System.out.println("Error al guardar: " + e.getMessage());
-        }
-        return false;
+        return false; // Devuelve false si hubo error
     }
+}
   public static boolean curpExiste(String curp) {
     String sql = "SELECT COUNT(*) FROM Cliente WHERE curp = ?";
     try (Connection con = conectar();
@@ -91,7 +94,55 @@ public class ConexionBD {
     }
     return false; 
 }
+  public static boolean usuarioExiste(String usuario) {
+    String[] consultas = {
+        "SELECT COUNT(*) FROM agentes WHERE usuario = ?",
+        "SELECT COUNT(*) FROM Gerente WHERE usuarioGerente = ?",
+        "SELECT COUNT(*) FROM Cliente WHERE usuarioCliente = ?"
+    };
 
+    try (Connection con = conectar()) {
+        for (String sql : consultas) {
+            try (PreparedStatement ps = con.prepareStatement(sql)) {
+                ps.setString(1, usuario);
+                try (ResultSet rs = ps.executeQuery()) {
+                    if (rs.next() && rs.getInt(1) > 0) {
+                        return true;
+                    }
+                }
+            }
+        }
+    } catch (Exception e) {
+        System.out.println("Error al verificar usuario: " + e.getMessage());
+    }
+    return false;
+}
+
+public static boolean correoExiste(String correo) {
+    String[] consultas = {
+        "SELECT COUNT(*) FROM agentes WHERE correo = ?",
+        "SELECT COUNT(*) FROM Gerente WHERE correo = ?",
+        "SELECT COUNT(*) FROM Cliente WHERE correoCliente = ?" // Ajustar si tu columna se llama diferente
+    };
+
+    try (Connection con = conectar()) {
+        for (String sql : consultas) {
+            try (PreparedStatement ps = con.prepareStatement(sql)) {
+                ps.setString(1, correo);
+                try (ResultSet rs = ps.executeQuery()) {
+                    if (rs.next() && rs.getInt(1) > 0) {
+                        return true;
+                    }
+                }
+            }
+        }
+    } catch (Exception e) {
+        System.out.println("Error al verificar correo: " + e.getMessage());
+    }
+    return false;
+}
+
+/*
   public static boolean usuarioExiste(String usuario) {
     String sql = "SELECT COUNT(*) FROM usuario WHERE usuario = ?";
     try (Connection con = conectar();
@@ -123,7 +174,7 @@ public class ConexionBD {
     return false;
 }
 
-    
+    */
   
   
 }

@@ -7,30 +7,30 @@ import java.sql.ResultSet;
 public class LoginDAO {
 
     public static Usuario validarLogin(String usuario, String contrasena) {
-        String sqlUsuarios = "SELECT * FROM usuarios WHERE usuario = ? AND contrasena = ?";
+        String sqlAgentes = "SELECT * FROM agentes WHERE usuario = ? AND contrasena = ?";
         String sqlClientes = "SELECT * FROM Cliente WHERE usuarioCliente = ? AND contrasena = ?";
-        String sqlGerente = "SELECT * FROM Gerente WHERE usuarioGerente = ? AND contrasena = ?";
+        String sqlGerente = "SELECT * FROM Gerente WHERE usuario = ? AND contrasena = ?";
 
         try (Connection con = ConexionBD.conectar()) {
             
-            try (PreparedStatement ps = con.prepareStatement(sqlUsuarios)) {
-                ps.setString(1, usuario);
-                ps.setString(2, contrasena);
-                ResultSet rs = ps.executeQuery();
+            try (PreparedStatement ps = con.prepareStatement(sqlAgentes)) {
+            ps.setString(1, usuario);
+            ps.setString(2, contrasena);
+            ResultSet rs = ps.executeQuery();
 
-                if (rs.next()) {
-                    Usuario usuarioLogueado = new Usuario();
-                    usuarioLogueado.setId(rs.getInt("id_Agente"));
-                    usuarioLogueado.setUsuario(rs.getString("usuario"));
-                    usuarioLogueado.setContrasena(rs.getString("contrasena"));
-                    usuarioLogueado.setNombre(rs.getString("nombre"));
-                    usuarioLogueado.setTelefono(rs.getString("telefono"));
-                    usuarioLogueado.setCorreo(rs.getString("correo"));
-                    usuarioLogueado.setTipo(rs.getString("tipo"));
-                    usuarioLogueado.setSucursal(rs.getString("sucursal"));
-                    return usuarioLogueado;
-                }
+            if (rs.next()) {
+                Usuario agenteLogueado = new Usuario();
+                agenteLogueado.setId(rs.getInt("id_agente"));
+                agenteLogueado.setUsuario(rs.getString("usuario"));
+                agenteLogueado.setContrasena(rs.getString("contrasena"));
+                agenteLogueado.setNombre(rs.getString("nombre"));
+                agenteLogueado.setTelefono(rs.getString("telefono"));
+                agenteLogueado.setCorreo(rs.getString("correo"));
+                agenteLogueado.setTipo("agente"); 
+                agenteLogueado.setSucursal(String.valueOf(rs.getInt("id_sucursal"))); 
+                return agenteLogueado;
             }
+        }
 
             
             try (PreparedStatement ps2 = con.prepareStatement(sqlClientes)) {
@@ -53,7 +53,7 @@ public class LoginDAO {
             }
 
           
-            try (PreparedStatement ps3 = con.prepareStatement(sqlGerente)) {
+             try (PreparedStatement ps3 = con.prepareStatement(sqlGerente)) {
                 ps3.setString(1, usuario);
                 ps3.setString(2, contrasena);
                 ResultSet rs3 = ps3.executeQuery();
@@ -61,13 +61,13 @@ public class LoginDAO {
                 if (rs3.next()) {
                     Usuario gerenteLogueado = new Usuario();
                     gerenteLogueado.setId(rs3.getInt("id_gerente"));
-                    gerenteLogueado.setUsuario(rs3.getString("usuarioGerente"));
+                    gerenteLogueado.setUsuario(rs3.getString("usuario")); // Cambiado
                     gerenteLogueado.setContrasena(rs3.getString("contrasena"));
                     gerenteLogueado.setNombre(rs3.getString("nombre"));
-                    gerenteLogueado.setTelefono(""); 
+                    gerenteLogueado.setTelefono(rs3.getString("telefono")); 
                     gerenteLogueado.setCorreo(rs3.getString("correo"));
                     gerenteLogueado.setTipo("admin"); 
-                    gerenteLogueado.setSucursal(rs3.getString("id_sucursal"));
+                    gerenteLogueado.setSucursal(String.valueOf(rs3.getInt("id_sucursal"))); // Convertimos a String
                     return gerenteLogueado;
                 }
             }
