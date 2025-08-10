@@ -38,7 +38,7 @@ public class dashboardCliente extends javax.swing.JFrame {
         int dia = now.getDayOfMonth();
         int month = now.getMonthValue();
         String[] meses = {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
-        dateText.setText(dia + " de " + meses[month - 2] + " de " + year);
+        dateText.setText(dia + " de " + meses[month - 1] + " de " + year);
     }
     
     private void initContent(){

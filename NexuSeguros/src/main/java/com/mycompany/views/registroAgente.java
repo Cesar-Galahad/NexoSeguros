@@ -2,6 +2,7 @@
 package com.mycompany.views;
 
 import clases.ConexionBD;
+import clases.agente;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -16,90 +17,45 @@ public class registroAgente extends javax.swing.JPanel {
     public registroAgente() {
         initComponents();
 
-        regisAgen.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent evt) {
-                registrarAgente();
-            }
-        });
-   
 
     }
 
  
   private void registrarAgente() {
-    
-
-    String tipo = jComboBox1.getSelectedItem().toString();
     String nombre = nomAgen.getText().trim();
+    String apellidoPaterno = apelliP.getText().trim();
+    String apellidoMaterno = apelliM.getText().trim();
+    String genero = gene.getText().trim();
     String telefono = teleAgen.getText().trim();
     String correo = correoAgen.getText().trim();
-    String sucursalStr = sucurAgen.getText().trim();
+    int idSucursal = Integer.parseInt(sucurAgen.getText().trim());
     String usuario = userAgen.getText().trim();
     String contrasena = contraAgen.getText().trim();
 
-    if (tipo.equals("Seleccionar ") || nombre.isEmpty() || telefono.isEmpty() ||
-        correo.isEmpty() || sucursalStr.isEmpty() || usuario.isEmpty() || contrasena.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Por favor completa todos los campos.");
-        return;
-    }
 
-    // Validar que la sucursal sea número
-    int sucursal;
-    try {
-        sucursal = Integer.parseInt(sucursalStr);
-    } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(this, "Sucursal debe ser un número entero.");
-        return;
-    }
+   agente a = new agente(nombre, apellidoPaterno, apellidoMaterno, genero, telefono, correo, contrasena, usuario);
 
-    // Verificar usuario y correo duplicados
-    if (ConexionBD.usuarioExiste(usuario)) {
-        JOptionPane.showMessageDialog(this, "El usuario ya existe. Elige otro nombre de usuario.");
-        return;
-    }
+// insertar
+   boolean ok = ConexionBD.registrarAgente(a);
+if (ok) {
+    JOptionPane.showMessageDialog(this, "Agente registrado correctamente.");
+    limpiarCampos();
+} else {
+    JOptionPane.showMessageDialog(this, "Error al registrar el agente.");
+}
 
-    if (ConexionBD.correoExiste(correo)) {
-        JOptionPane.showMessageDialog(this, "El correo ya está registrado. Usa uno diferente.");
-        return;
-    }
+    
+}
 
-    // Insertar nuevo agente
-String sql = "INSERT INTO usuarios (usuario, contrasena, tipo, nombre, telefono, correo, sucursal) VALUES (?, ?, ?, ?, ?, ?, ?)";
-
-    try (Connection con = ConexionBD.conectar();
-         PreparedStatement ps = con.prepareStatement(sql)) {
-
-        ps.setString(1, usuario);
-        ps.setString(2, contrasena);
-        ps.setString(3, tipo.toLowerCase());
-        ps.setString(4, nombre);
-        ps.setString(5, telefono);
-        ps.setString(6, correo);
-        ps.setInt(7, sucursal);
-
-        int rows = ps.executeUpdate();
-        if (rows > 0) {
-            JOptionPane.showMessageDialog(this, "Agente registrado exitosamente.");
-            limpiarCampos();
-        } else {
-            JOptionPane.showMessageDialog(this, "No se pudo registrar al agente.");
-        }
-
-    } catch (Exception e) {
-        e.printStackTrace();
-        JOptionPane.showMessageDialog(this, "Error al registrar: " + e.getMessage());
-    }
-
-  }
-  private void limpiarCampos() {
+private void limpiarCampos() {
     nomAgen.setText("");
+    apelliP.setText("");
+    apelliM.setText("");
     teleAgen.setText("");
     correoAgen.setText("");
     sucurAgen.setText("");
     userAgen.setText("");
     contraAgen.setText("");
-    jComboBox1.setSelectedIndex(0); // Volver a "Seleccionar"
 }
    
     @SuppressWarnings("unchecked")
@@ -120,28 +76,66 @@ String sql = "INSERT INTO usuarios (usuario, contrasena, tipo, nombre, telefono,
         contraAgen = new javax.swing.JTextField();
         userAgen = new javax.swing.JTextField();
         regisAgen = new javax.swing.JButton();
-        jLabel9 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel10 = new javax.swing.JLabel();
+        apelliP = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        apelliM = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        gene = new javax.swing.JTextField();
 
         setPreferredSize(new java.awt.Dimension(794, 518));
 
-        jLabel3.setText("Nombre");
+        jLabel3.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jLabel3.setText("Nombre:");
 
-        jLabel4.setText("Telefono");
+        jLabel4.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jLabel4.setText("Telefono:");
 
-        jLabel5.setText("Correo");
+        jLabel5.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jLabel5.setText("Correo:");
 
-        jLabel6.setText("Sucursal");
+        jLabel6.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jLabel6.setText("Sucursal:");
 
-        jLabel7.setText("Usuario");
+        jLabel7.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jLabel7.setText("Usuario:");
 
-        jLabel8.setText("Contraseña");
+        jLabel8.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jLabel8.setText("Contraseña:");
+
+        nomAgen.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+
+        teleAgen.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+
+        correoAgen.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+
+        sucurAgen.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+
+        contraAgen.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+
+        userAgen.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
         regisAgen.setText("Registrar ");
+        regisAgen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                regisAgenActionPerformed(evt);
+            }
+        });
 
-        jLabel9.setText("Tipo");
+        jLabel10.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jLabel10.setText("Apellido paterno:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar ", "Agente" }));
+        apelliP.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+
+        jLabel11.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jLabel11.setText("Apeliido Materno:");
+
+        apelliM.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+
+        jLabel12.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jLabel12.setText("Genero:");
+
+        gene.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -150,72 +144,107 @@ String sql = "INSERT INTO usuarios (usuario, contrasena, tipo, nombre, telefono,
             .addGroup(layout.createSequentialGroup()
                 .addGap(119, 119, 119)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel8))
-                .addGap(82, 82, 82)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(nomAgen, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
-                    .addComponent(teleAgen, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
-                    .addComponent(correoAgen, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
-                    .addComponent(sucurAgen, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
-                    .addComponent(contraAgen, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
-                    .addComponent(userAgen, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
-                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(125, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(regisAgen)
-                .addGap(279, 279, 279))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel2)
+                        .addGap(458, 458, 458))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addGap(109, 109, 109)
+                                        .addComponent(teleAgen, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel3)
+                                            .addComponent(jLabel10)
+                                            .addComponent(jLabel11))
+                                        .addGap(59, 59, 59)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(apelliP)
+                                            .addComponent(nomAgen, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
+                                            .addComponent(apelliM)))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel12))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(gene)
+                                    .addComponent(contraAgen, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
+                                    .addComponent(userAgen, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
+                                    .addComponent(regisAgen)
+                                    .addComponent(correoAgen, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
+                                    .addComponent(sucurAgen, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE))))
+                        .addGap(73, 73, 73))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(53, 53, 53)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel9)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(59, 59, 59)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel3)
                     .addComponent(nomAgen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(apelliP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10))
+                .addGap(14, 14, 14)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(apelliM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(teleAgen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(correoAgen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(sucurAgen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
+                    .addComponent(sucurAgen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(userAgen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(contraAgen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(gene, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(regisAgen)
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addGap(51, 51, 51))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void regisAgenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regisAgenActionPerformed
+        registrarAgente();
+    }//GEN-LAST:event_regisAgenActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField apelliM;
+    private javax.swing.JTextField apelliP;
     private javax.swing.JTextField contraAgen;
     private javax.swing.JTextField correoAgen;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JTextField gene;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -223,7 +252,6 @@ String sql = "INSERT INTO usuarios (usuario, contrasena, tipo, nombre, telefono,
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField nomAgen;
     private javax.swing.JButton regisAgen;
     private javax.swing.JTextField sucurAgen;

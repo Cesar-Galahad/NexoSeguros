@@ -22,7 +22,7 @@ public class dashboardAdmin extends javax.swing.JFrame {
     }
     private void mostrarDatosUsuario() {
         if (usuario != null) {
-            jLabel1.setText("Bienvenido " + usuario.getNombre());
+            jLabel1.setText("Bienvenido, Gerente" + usuario.getNombre());
            
         }
     }
@@ -36,7 +36,7 @@ public class dashboardAdmin extends javax.swing.JFrame {
         int dia = now.getDayOfMonth();
         int month = now.getMonthValue();
         String[] meses = {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
-        dateText.setText(dia + " de " + meses[month - 2] + " de " + year);
+        dateText.setText(dia + " de " + meses[month - 1] + " de " + year);
     }
     
     private void initContent(){

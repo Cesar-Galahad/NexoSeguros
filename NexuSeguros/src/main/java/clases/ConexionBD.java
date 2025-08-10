@@ -52,6 +52,29 @@ public class ConexionBD {
         System.out.println("Error al guardar: " + e.getMessage());
     }
 }
+     public static boolean registrarAgente(agente a) {
+        String sql = "INSERT INTO agentes (nombre, apellido_paterno, apellido_materno, telefono, genero, correo, id_sucursal, usuario, contrasena) " +
+                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        try (Connection con = conectar();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setString(1, a.getNombre());
+            ps.setString(2, a.getApellidoPaterno());
+            ps.setString(3, a.getApellidoMaterno());
+            ps.setString(4, a.getTelefono());
+            ps.setString(5, a.getGenero());
+            ps.setString(6, a.getCorreo());
+            ps.setInt(7, a.getIdSucursal());
+            ps.setString(8, a.getUsuario());
+            ps.setString(9, a.getContrasena());
+            ps.executeUpdate();
+            System.out.println("Datos guardados correctamente");
+
+    } catch (SQLException e) {
+        System.out.println("Error al guardar: " + e.getMessage());
+        }
+        return false;
+    }
   public static boolean curpExiste(String curp) {
     String sql = "SELECT COUNT(*) FROM Cliente WHERE curp = ?";
     try (Connection con = conectar();
@@ -99,6 +122,8 @@ public class ConexionBD {
     }
     return false;
 }
+
+    
   
   
 }
