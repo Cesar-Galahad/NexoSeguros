@@ -94,6 +94,28 @@ public class ConexionBD {
     }
     return false; 
 }
+     public static boolean clienteYSeguroExiste(String curp, String tipoSeguro) {
+    String sql = "SELECT COUNT(*) " +
+                 "FROM Cliente c " +
+                 "JOIN Solicitud s ON c.id_cliente = s.id_cliente " +
+                 "WHERE c.curp = ? AND s.tipoSeguro = ?";
+    try (Connection con = conectar();
+         PreparedStatement ps = con.prepareStatement(sql)) {
+        
+        ps.setString(1, curp);
+        ps.setString(2, tipoSeguro);
+        
+        try (ResultSet rs = ps.executeQuery()) {
+            if (rs.next()) {
+                int count = rs.getInt(1);
+                return count > 0; // true si ya existe esa CURP con ese tipo de seguro
+            }
+        }
+    } catch (SQLException e) {
+        System.out.println("Error al verificar CURP y Tipo de Seguro: " + e.getMessage());
+    }
+    return false;
+}
   public static boolean usuarioExiste(String usuario) {
     String[] consultas = {
         "SELECT COUNT(*) FROM agentes WHERE usuario = ?",
@@ -141,40 +163,6 @@ public static boolean correoExiste(String correo) {
     }
     return false;
 }
-
-/*
-  public static boolean usuarioExiste(String usuario) {
-    String sql = "SELECT COUNT(*) FROM usuario WHERE usuario = ?";
-    try (Connection con = conectar();
-         PreparedStatement ps = con.prepareStatement(sql)) {
-        ps.setString(1, usuario);
-        try (ResultSet rs = ps.executeQuery()) {
-            if (rs.next()) {
-                return rs.getInt(1) > 0;
-            }
-        }
-    } catch (Exception e) {
-        System.out.println("Error al verificar usuario: " + e.getMessage());
-    }
-    return false;
-}
-  public static boolean correoExiste(String correo) {
-    String sql = "SELECT COUNT(*) FROM usuario WHERE correo = ?";
-    try (Connection con = conectar();
-         PreparedStatement ps = con.prepareStatement(sql)) {
-        ps.setString(1, correo);
-        try (ResultSet rs = ps.executeQuery()) {
-            if (rs.next()) {
-                return rs.getInt(1) > 0;
-            }
-        }
-    } catch (Exception e) {
-        System.out.println("Error al verificar correo: " + e.getMessage());
-    }
-    return false;
-}
-
-    */
   
   
 }

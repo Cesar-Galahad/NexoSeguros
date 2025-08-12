@@ -3,9 +3,8 @@ package clases;
 public class agente extends User{
     private int idSucursal;
 
-    public agente( String nombre, String apellidoPaterno, String apellidoMaterno, String telefono, String genero, String correo, int idSucursal1, String contrasena, String usuario) {
+    public agente(String nombre, String apellidoPaterno, String apellidoMaterno, String telefono, String genero, String correo, int idSucursal, String contrasena, String usuario) {
         super(nombre, apellidoPaterno, apellidoMaterno, telefono, genero, correo, contrasena, usuario);
-        
         this.idSucursal = idSucursal;
     }
 

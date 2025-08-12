@@ -3,9 +3,6 @@ package com.mycompany.views;
 
 import clases.Usuario;
 
-
-
-
 public class perfilAgente extends javax.swing.JPanel {
 
   
@@ -170,15 +167,14 @@ public class perfilAgente extends javax.swing.JPanel {
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(fondoagenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(fondoagenteLayout.createSequentialGroup()
-                            .addComponent(jLabel2)
-                            .addGap(30, 30, 30)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(fondoagenteLayout.createSequentialGroup()
-                            .addComponent(jLabel3)
-                            .addGap(32, 32, 32)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fondoagenteLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fondoagenteLayout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(32, 32, 32)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(215, Short.MAX_VALUE))
         );
         fondoagenteLayout.setVerticalGroup(
@@ -187,10 +183,10 @@ public class perfilAgente extends javax.swing.JPanel {
                 .addGap(102, 102, 102)
                 .addGroup(fondoagenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(fondoagenteLayout.createSequentialGroup()
-                        .addGroup(fondoagenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(fondoagenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(fondoagenteLayout.createSequentialGroup()
                                 .addComponent(jLabel3)
-                                .addGap(27, 27, 27)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel2))
                             .addGroup(fondoagenteLayout.createSequentialGroup()
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)

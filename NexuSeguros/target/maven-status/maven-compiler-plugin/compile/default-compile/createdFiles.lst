@@ -3,10 +3,12 @@ com\mycompany\nexuseguros\dashboardAdmin$10.class
 com\mycompany\views\leerCliente$2.class
 com\mycompany\views\registrodeCliente$4.class
 com\mycompany\nexuseguros\dashboardAgente$6.class
+com\mycompany\views\borrarAgenCliente$2.class
 com\mycompany\nexuseguros\leerAgente$5.class
 com\mycompany\nexuseguros\dashboardAgente$13.class
 clases\Usuario.class
 com\mycompany\nexuseguros\dashboardCliente$9.class
+com\mycompany\views\borrarAgenCliente$5.class
 com\mycompany\views\registrodeCliente$1.class
 com\mycompany\nexuseguros\dashboardAdmin$13.class
 com\mycompany\nexuseguros\dashboardAgente$9.class
@@ -15,7 +17,6 @@ com\mycompany\views\inicioAgente$1.class
 com\mycompany\nexuseguros\dashboardCliente$6.class
 com\login\login$5.class
 com\mycompany\nexuseguros\dashboardAdmin$1.class
-com\mycompany\views\borrarAgenClien$2.class
 com\login\login$2.class
 com\mycompany\views\inicioAgente$4.class
 com\mycompany\nexuseguros\dashboardAdmin$4.class
@@ -43,15 +44,16 @@ com\mycompany\nexuseguros\leerAgente$4.class
 com\mycompany\nexuseguros\dashboardAdmin$14.class
 com\mycompany\nexuseguros\dashboardAgente$3.class
 com\mycompany\views\borrarCliente$1.class
-com\mycompany\views\borrarAgenClien.class
 com\mycompany\views\inicioAgente$3.class
 com\mycompany\views\registrodeCliente$8.class
 com\mycompany\views\registrodeCliente$2.class
 com\mycompany\nexuseguros\dashboardAdmin.class
+com\mycompany\views\borrarAgenCliente$4.class
 clases\User.class
 com\mycompany\nexuseguros\dashboardAgente$10.class
 com\mycompany\nexuseguros\dashboardCliente$5.class
 com\mycompany\views\inicioAgente.class
+com\mycompany\views\borrarAgenCliente.class
 clases\gerente.class
 com\mycompany\views\inicioAgente$2.class
 com\mycompany\nexuseguros\dashboardAgente$2.class
@@ -61,7 +63,9 @@ com\mycompany\nexuseguros\dashboardAdmin$3.class
 com\mycompany\views\leerCliente.class
 com\mycompany\views\borrarCliente$3.class
 com\mycompany\views\leerCliente$1.class
+com\mycompany\views\borrarAgenCliente$6.class
 com\mycompany\nexuseguros\dashboardAdmin$8.class
+com\mycompany\views\borrarAgenCliente$3.class
 com\mycompany\nexuseguros\leerAgente.class
 com\mycompany\views\registrodeCliente$3.class
 com\mycompany\nexuseguros\dashboardAdmin$12.class
@@ -74,6 +78,7 @@ com\mycompany\nexuseguros\dashboardAgente$5.class
 com\mycompany\nexuseguros\leerAgente$3.class
 com\mycompany\nexuseguros\dashboardAgente$15.class
 com\mycompany\nexuseguros\dashboardCliente.class
+com\mycompany\views\borrarAgenCliente$7.class
 com\login\login.class
 com\mycompany\nexuseguros\dashboardCliente$7.class
 com\mycompany\nexuseguros\dashboardAgente.class
@@ -83,10 +88,14 @@ com\mycompany\nexuseguros\dashboardAgente$1.class
 com\mycompany\nexuseguros\dashboardAgente$7.class
 com\mycompany\nexuseguros\dashboardCliente$3.class
 com\mycompany\views\registrodeCliente$6.class
+com\mycompany\nexuseguros\leerAgente$7.class
 com\login\login$4.class
+clases\clienteDatos.class
+com\mycompany\views\borrarAgenCliente$1.class
 com\mycompany\nexuseguros\dashboardAgente$14.class
 com\mycompany\nexuseguros\leerAgente$2.class
 com\mycompany\nexuseguros\dashboardCliente$8.class
+com\mycompany\views\borrarAgenCliente$8.class
 clases\agente.class
 com\mycompany\nexuseguros\dashboardAdmin$11.class
 com\mycompany\nexuseguros\dashboardCliente$2.class
@@ -94,5 +103,4 @@ com\login\login$3.class
 com\mycompany\nexuseguros\dashboardAdmin$9.class
 com\mycompany\views\perfilC.class
 com\mycompany\views\registrodeCliente$5.class
-com\mycompany\views\borrarAgenClien$1.class
 com\mycompany\views\registroAgente$1.class

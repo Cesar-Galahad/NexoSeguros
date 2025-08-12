@@ -461,7 +461,7 @@ public class dashboardAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_botonBorrarMouseExited
 
     private void botonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrarActionPerformed
-        ShowJPanel(new borrarAgenClien());
+        ShowJPanel(new borrarAgenCliente());
     }//GEN-LAST:event_botonBorrarActionPerformed
 
     

@@ -1,11 +1,24 @@
 package com.mycompany.views;
 
+import clases.clienteDatos;
+
 public class perfilC extends javax.swing.JPanel {
 
     public perfilC() {
         initComponents();
     }
-    
+
+    public perfilC(clienteDatos cliente) {
+        initComponents();
+        if (cliente != null) {
+            nombreCliente.setText(cliente.getNombre());
+            direccionCliente.setText(cliente.getDireccion());
+            generoCliente.setText(cliente.getGenero());
+            generoCliente.setText(cliente.getTelefono());
+            rfcCliente.setText(cliente.getRfc());
+            curpCliente.setText(cliente.getCurp());
+        }
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -19,17 +32,17 @@ public class perfilC extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        correoAgente = new javax.swing.JTextArea();
+        movilAgente = new javax.swing.JTextArea();
         jScrollPane3 = new javax.swing.JScrollPane();
-        usuAgente = new javax.swing.JTextArea();
+        generoCliente = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
-        nomAgente = new javax.swing.JTextArea();
+        nombreCliente = new javax.swing.JTextArea();
         jScrollPane1 = new javax.swing.JScrollPane();
-        teleonoAgente = new javax.swing.JTextArea();
+        direccionCliente = new javax.swing.JTextArea();
         jScrollPane5 = new javax.swing.JScrollPane();
-        nomAgente1 = new javax.swing.JTextArea();
+        rfcCliente = new javax.swing.JTextArea();
         jScrollPane6 = new javax.swing.JScrollPane();
-        teleonoAgente1 = new javax.swing.JTextArea();
+        curpCliente = new javax.swing.JTextArea();
         jLabel7 = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -41,10 +54,10 @@ public class perfilC extends javax.swing.JPanel {
         jLabel2.setText("Dirección:");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel3.setText("Telefono:");
+        jLabel3.setText("Genero:");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel4.setText("Movil:");
+        jLabel4.setText("Telefono:");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setText("CURP:");
@@ -55,68 +68,68 @@ public class perfilC extends javax.swing.JPanel {
         jScrollPane4.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane4.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
-        correoAgente.setEditable(false);
-        correoAgente.setBackground(new java.awt.Color(204, 204, 204));
-        correoAgente.setColumns(20);
-        correoAgente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        correoAgente.setRows(5);
-        correoAgente.setBorder(null);
-        jScrollPane4.setViewportView(correoAgente);
+        movilAgente.setEditable(false);
+        movilAgente.setBackground(new java.awt.Color(204, 204, 204));
+        movilAgente.setColumns(20);
+        movilAgente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        movilAgente.setRows(5);
+        movilAgente.setBorder(null);
+        jScrollPane4.setViewportView(movilAgente);
 
         jScrollPane3.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane3.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
-        usuAgente.setEditable(false);
-        usuAgente.setBackground(new java.awt.Color(204, 204, 204));
-        usuAgente.setColumns(20);
-        usuAgente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        usuAgente.setRows(5);
-        usuAgente.setBorder(null);
-        jScrollPane3.setViewportView(usuAgente);
+        generoCliente.setEditable(false);
+        generoCliente.setBackground(new java.awt.Color(204, 204, 204));
+        generoCliente.setColumns(20);
+        generoCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        generoCliente.setRows(5);
+        generoCliente.setBorder(null);
+        jScrollPane3.setViewportView(generoCliente);
 
         jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
-        nomAgente.setEditable(false);
-        nomAgente.setBackground(new java.awt.Color(204, 204, 204));
-        nomAgente.setColumns(20);
-        nomAgente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        nomAgente.setRows(5);
-        nomAgente.setBorder(null);
-        jScrollPane2.setViewportView(nomAgente);
+        nombreCliente.setEditable(false);
+        nombreCliente.setBackground(new java.awt.Color(204, 204, 204));
+        nombreCliente.setColumns(20);
+        nombreCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        nombreCliente.setRows(5);
+        nombreCliente.setBorder(null);
+        jScrollPane2.setViewportView(nombreCliente);
 
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
-        teleonoAgente.setEditable(false);
-        teleonoAgente.setBackground(new java.awt.Color(204, 204, 204));
-        teleonoAgente.setColumns(20);
-        teleonoAgente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        teleonoAgente.setRows(5);
-        teleonoAgente.setBorder(null);
-        jScrollPane1.setViewportView(teleonoAgente);
+        direccionCliente.setEditable(false);
+        direccionCliente.setBackground(new java.awt.Color(204, 204, 204));
+        direccionCliente.setColumns(20);
+        direccionCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        direccionCliente.setRows(5);
+        direccionCliente.setBorder(null);
+        jScrollPane1.setViewportView(direccionCliente);
 
         jScrollPane5.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane5.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
-        nomAgente1.setEditable(false);
-        nomAgente1.setBackground(new java.awt.Color(204, 204, 204));
-        nomAgente1.setColumns(20);
-        nomAgente1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        nomAgente1.setRows(5);
-        nomAgente1.setBorder(null);
-        jScrollPane5.setViewportView(nomAgente1);
+        rfcCliente.setEditable(false);
+        rfcCliente.setBackground(new java.awt.Color(204, 204, 204));
+        rfcCliente.setColumns(20);
+        rfcCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        rfcCliente.setRows(5);
+        rfcCliente.setBorder(null);
+        jScrollPane5.setViewportView(rfcCliente);
 
         jScrollPane6.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane6.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
-        teleonoAgente1.setEditable(false);
-        teleonoAgente1.setBackground(new java.awt.Color(204, 204, 204));
-        teleonoAgente1.setColumns(20);
-        teleonoAgente1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        teleonoAgente1.setRows(5);
-        teleonoAgente1.setBorder(null);
-        jScrollPane6.setViewportView(teleonoAgente1);
+        curpCliente.setEditable(false);
+        curpCliente.setBackground(new java.awt.Color(204, 204, 204));
+        curpCliente.setColumns(20);
+        curpCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        curpCliente.setRows(5);
+        curpCliente.setBorder(null);
+        jScrollPane6.setViewportView(curpCliente);
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/circle-user.png"))); // NOI18N
 
@@ -196,7 +209,9 @@ public class perfilC extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextArea correoAgente;
+    private javax.swing.JTextArea curpCliente;
+    private javax.swing.JTextArea direccionCliente;
+    private javax.swing.JTextArea generoCliente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -211,10 +226,8 @@ public class perfilC extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JTextArea nomAgente;
-    private javax.swing.JTextArea nomAgente1;
-    private javax.swing.JTextArea teleonoAgente;
-    private javax.swing.JTextArea teleonoAgente1;
-    private javax.swing.JTextArea usuAgente;
+    private javax.swing.JTextArea movilAgente;
+    private javax.swing.JTextArea nombreCliente;
+    private javax.swing.JTextArea rfcCliente;
     // End of variables declaration//GEN-END:variables
 }

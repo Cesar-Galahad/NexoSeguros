@@ -62,7 +62,7 @@ public class registroAgente extends javax.swing.JPanel {
     String contrasena = contraAgen.getText().trim();
 
 
-   agente a = new agente(nombre, apellidoPaterno, apellidoMaterno, genero, telefono, correo, idSucursal, contrasena, usuario);
+   agente a = new agente(nombre, apellidoPaterno, apellidoMaterno, telefono, genero, correo, idSucursal, contrasena, usuario);
 
 // insertar
    boolean ok = ConexionBD.registrarAgente(a);

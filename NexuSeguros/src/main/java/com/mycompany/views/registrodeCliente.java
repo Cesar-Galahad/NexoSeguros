@@ -75,7 +75,7 @@ public class registrodeCliente extends javax.swing.JPanel {
             }
 
            
-            if (texto.length() >= 8) {
+            if (texto.length() >= 10) {
                 evt.consume();
             }
         }
@@ -138,15 +138,15 @@ private boolean validarCamposConMensajes() {
     }
 
     // Validación formato fecha dd/MM/yy para jTextField1 (Recepción) y jTextField9 (Vigencia)
-    String fechaRegex = "^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/\\d{2}$";
+    String fechaRegex = "^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/\\d{4}$";
 
     if (!jTextField1.getText().matches(fechaRegex)) {
-        JOptionPane.showMessageDialog(this, "El campo Recepción debe tener formato dd/MM/aa (ejemplo: 29/07/25).", "Fecha inválida", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this, "El campo Recepción debe tener formato dd/MM/aaaa (ejemplo: 29/07/25).", "Fecha inválida", JOptionPane.ERROR_MESSAGE);
         return false;
     }
 
     if (!jTextField9.getText().matches(fechaRegex)) {
-        JOptionPane.showMessageDialog(this, "El campo Vigencia debe tener formato dd/MM/aa (ejemplo: 29/07/25).", "Fecha inválida", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this, "El campo Vigencia debe tener formato dd/MM/aaaa (ejemplo: 29/07/25).", "Fecha inválida", JOptionPane.ERROR_MESSAGE);
         return false;
     }
 
@@ -546,19 +546,10 @@ private void limpiarCampos() {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
         if (!validarCamposConMensajes()) {
-            return; // Ya muestra mensajes dentro del método
-        }
+        return; // Detiene si hay campos inválidos
+    }
 
-        Cliente cliente = registrarCliente();
-
-        if (ConexionBD.curpExiste(cliente.getCurp())) {
-            JOptionPane.showMessageDialog(this, "La CURP ya está registrada.", "CURP duplicada", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        ConexionBD.guardar(cliente);
-        JOptionPane.showMessageDialog(this, "Cliente registrado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-
+        registrarClienteConValidacion();
         limpiarCampos();
     }//GEN-LAST:event_jButton1ActionPerformed
 
