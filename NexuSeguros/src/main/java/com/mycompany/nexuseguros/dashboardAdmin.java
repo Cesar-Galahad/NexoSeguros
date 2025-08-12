@@ -399,7 +399,7 @@ public class dashboardAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_botonPerfilCMouseExited
 
     private void botonPerfilCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPerfilCActionPerformed
-        ShowJPanel(new perfilAgente());
+        ShowJPanel(new perfilAgente(usuario));
     }//GEN-LAST:event_botonPerfilCActionPerformed
 
     private void botonBuscarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonBuscarMouseEntered

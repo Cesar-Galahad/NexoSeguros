@@ -1,6 +1,7 @@
 package com.mycompany.nexuseguros;
 
 import clases.Usuario;
+import clases.clienteDatos;
 import com.login.login;
 import com.mycompany.views.*;
 import java.awt.BorderLayout;
@@ -10,10 +11,10 @@ import javax.swing.JPanel;
 
 
 public class dashboardCliente extends javax.swing.JFrame {
-    private Usuario usuario;
+    private clienteDatos cliente;
   
     public dashboardCliente(Usuario usuario) {
-        this.usuario = usuario; 
+        this.cliente = cliente; 
         initComponents();
         initStyles();
         setDate();
@@ -22,8 +23,8 @@ public class dashboardCliente extends javax.swing.JFrame {
         
     }
     private void mostrarDatosUsuario() {
-        if (usuario != null) {
-            jLabel1.setText("Bienvenido " + usuario.getNombre());
+        if (cliente != null) {
+            jLabel1.setText("Bienvenido " + cliente.getNombre());
            
         }
     }
@@ -317,7 +318,7 @@ public class dashboardCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_botonPerfilCMouseExited
 
     private void botonPerfilCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPerfilCActionPerformed
-        ShowJPanel(new perfilC());
+        ShowJPanel(new perfilC(cliente));
     }//GEN-LAST:event_botonPerfilCActionPerformed
 
     private void botonSesionCMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonSesionCMouseEntered
